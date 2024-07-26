@@ -1,0 +1,51 @@
+# Ignore class files
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Maven #
+target/
+
+# Gradle #
+.gradle/
+build/
+
+# Compiled source #
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Eclipse #
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA #
+.idea/
+*.iml
+*.iws
+out/
+
+# VSCode #
+.vscode/
+
+# OS-specific files #
+
+# Windows #
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS #
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux #
+*~
