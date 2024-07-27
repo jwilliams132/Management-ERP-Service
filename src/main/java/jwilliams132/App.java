@@ -14,6 +14,8 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+	private final String CSS_Styles = this.getClass().getResource("Element_Styles.css").toExternalForm();
+	private final String CSS_Colors_Dark = this.getClass().getResource("Element_Colors_Dark.css").toExternalForm();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,6 +35,8 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+		root.getStylesheets().add(CSS_Styles);
+		root.getStylesheets().add(CSS_Colors_Dark);
 
     public static void main(String[] args) {
 
