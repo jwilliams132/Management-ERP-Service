@@ -1,0 +1,18 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<VBox fx:id="navBar" xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="jwilliams132.Controller_NavBar"
+	styleClass="navBar">
+
+	<Button fx:id="dashboardButton" styleClass="nav-button" onAction="#handleDashboardButtonAction" />
+	<Button fx:id="salesButton" styleClass="nav-button" onAction="#handleSalesButtonAction" />
+	<Button fx:id="purchasesButton" styleClass="nav-button" onAction="#handlePurchasesButtonAction" />
+	<Button fx:id="inventoryButton" styleClass="nav-button" onAction="#handleInventoryButtonAction" />
+	<Button fx:id="reportsButton" styleClass="nav-button" onAction="#handleReportsButtonAction" />
+	<Pane VBox.vgrow="always"/>
+	<Button fx:id="settingsButton" styleClass="nav-button" onAction="#handleSettingsButtonAction" />
+
+</VBox> 

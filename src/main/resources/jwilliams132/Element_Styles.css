@@ -1,3 +1,23 @@
-.button {
-    -fx-padding: 10 10 10 10;
+.nav-button {
+	-fx-padding: 10 10 10 15;
+	-fx-background-radius: 0;
+	-fx-border-radius: 0;
+	-fx-border-width: 0 0 0 2;
+	-fx-effect: null;
+	-fx-font-size: 28px;
+	-fx-alignment: CENTER_LEFT; /* Align content to the left */
+	/* -fx-content-display: LEFT; */
+}
+
+.nav-icon {
+	-fx-alignment: CENTER;
+}
+
+/* .nav-button:hover {
+
+	
+} */
+
+.navBar {
+	-fx-border-width: 0 1 0 0;
 }

@@ -1,45 +1,71 @@
 package jwilliams132;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
-    private static Scene scene;
+	public static void main(String[] args) {
+
+		launch();
+	}
+
+	private Scene scene;
+	private Stage window;
+	private BorderPane root;
 	private final String CSS_Styles = this.getClass().getResource("Element_Styles.css").toExternalForm();
 	private final String CSS_Colors_Dark = this.getClass().getResource("Element_Colors_Dark.css").toExternalForm();
 
-    @Override
-    public void start(Stage stage) throws IOException {
+	@Override
+	public void start(Stage primaryStage) {
 
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }
+		window = primaryStage;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
 
-    static void setRoot(String fxml) throws IOException {
+		try {
 
-        scene.setRoot(loadFXML(fxml));
-    }
+			root = loader.load();
+			if (root == null) {
 
-    private static Parent loadFXML(String fxml) throws IOException {
+				throw new IOException("FXML root is null");
+			}
+		} catch (IOException e) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
+			e.printStackTrace();
+		}
 		root.getStylesheets().add(CSS_Styles);
 		root.getStylesheets().add(CSS_Colors_Dark);
 
-    public static void main(String[] args) {
+		scene = new Scene(root, 1600, 900); // 1300, 600
 
-        launch();
-    }
+		window.setScene(scene);
+		// window.setMaximized(true);
+		window.setTitle("Management ERP Service");
+
+		setWindowIcon();
+		window.setOnCloseRequest(e -> window.close());
+		window.show();
+	}
+
+	private void setWindowIcon() {
+
+		InputStream stream = getClass().getResourceAsStream("Logo.jpg");
+		if (stream != null) {
+
+			window.getIcons().add(new Image(stream));
+		} else {
+
+			System.err.println("Failed to load the image stream");
+		}
+	}
 }

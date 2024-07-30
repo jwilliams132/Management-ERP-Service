@@ -5,8 +5,8 @@
 <?import javafx.scene.control.Label?>
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="jwilliams132.Controller_Startup" styleClass="editor">
-	<Label fx:id="main" text="ERP SOFTWARE" style="-fx-font-weight: bold;" styleClass="tertiaryLabel">
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="jwilliams132.Controller_Inventory" styleClass="editor">
+	<Label fx:id="main" text="INVENTORY" style="-fx-font-weight: bold;" styleClass="tertiaryLabel">
         <font>
             <Font name="Courier New" size="50" />
         </font>
