@@ -39,6 +39,7 @@ public class Controller_NavBar {
 	private Controller_Main mainController;
 
     public void setMainController(Controller_Main mainController) {
+
         this.mainController = mainController;
     }
 
@@ -119,9 +120,10 @@ public class Controller_NavBar {
 			activeFontIcon.getStyleClass().remove("clicked");
 		}
 		if (button.equals(activeButton)) {
-
+			
 			activeButton = null;
 			activeFontIcon = null;
+			mainController.loadDisplayFXML(Display.STARTUP);
 		} else {
 
 			button.getStyleClass().add("clicked");
@@ -135,8 +137,8 @@ public class Controller_NavBar {
 	@FXML
 	private void handleDashboardButtonAction() {
 
-		handleButtonClick(dashboardButton, dashboardIcon);
 		mainController.loadDisplayFXML(Display.DASHBOARD);
+		handleButtonClick(dashboardButton, dashboardIcon);
 		System.out.println("Dashboard button clicked!");
 		// Add your action handling code here
 	}
@@ -144,8 +146,8 @@ public class Controller_NavBar {
 	@FXML
 	private void handleSalesButtonAction() {
 
-		handleButtonClick(salesButton, salesIcon);
 		mainController.loadDisplayFXML(Display.SALES);
+		handleButtonClick(salesButton, salesIcon);
 		System.out.println("Sales button clicked!");
 		// Add your action handling code here
 	}
@@ -153,8 +155,8 @@ public class Controller_NavBar {
 	@FXML
 	private void handlePurchasesButtonAction() {
 
-		handleButtonClick(purchasesButton, purchasesIcon);
 		mainController.loadDisplayFXML(Display.PURCHASES);
+		handleButtonClick(purchasesButton, purchasesIcon);
 		System.out.println("Purchases button clicked!");
 		// Add your action handling code here
 	}
@@ -162,16 +164,16 @@ public class Controller_NavBar {
 	@FXML
 	private void handleInventoryButtonAction() {
 
-		handleButtonClick(inventoryButton, inventoryIcon);
 		mainController.loadDisplayFXML(Display.INVENTORY);
+		handleButtonClick(inventoryButton, inventoryIcon);
 		System.out.println("Inventory button clicked!");
 		// Add your action handling code here
 	}
 	@FXML
 	private void handleReportsButtonAction() {
 
-		handleButtonClick(reportsButton, reportsIcon);
 		mainController.loadDisplayFXML(Display.REPORTS);
+		handleButtonClick(reportsButton, reportsIcon);
 		System.out.println("Reports button clicked!");
 		// Add your action handling code here
 	}
@@ -179,8 +181,8 @@ public class Controller_NavBar {
 	@FXML
 	private void handleSettingsButtonAction() {
 
-		handleButtonClick(settingsButton, settingsIcon);
 		mainController.loadDisplayFXML(Display.SETTINGS);
+		handleButtonClick(settingsButton, settingsIcon);
 		System.out.println("Settings button clicked!");
 		// Add your action handling code here
 	}
