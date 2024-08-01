@@ -34,6 +34,7 @@ public class Controller_Main {
 			System.err.println("Issue with loading the NavBar fxml.");
 			e.printStackTrace();
 		}
+		loadDisplayFXML(currentDisplay);
 	}
 
 	@FXML
