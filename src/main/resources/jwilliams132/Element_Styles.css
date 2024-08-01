@@ -1,3 +1,140 @@
+/* -fx-padding: top right bottom left*/
+.dashboardRoot,
+.salesRoot,
+.purchasesRoot,
+.inventoryRoot,
+.reportsRoot {
+	-fx-padding: 10;
+}
+
+.settings-label {
+	-fx-font-size: 1px;
+}
+
+.settings-section-title {
+	-fx-font-family: 'Segoe UI';
+	-fx-padding: 0 10 0 10;
+	-fx-font-size: 24px;
+	-fx-font-weight: bold;
+}
+
+.settings-item-description {
+	-fx-font-family: 'Segoe UI';
+	-fx-font-size: 14px;
+}
+
+.settings-item-checkbox {
+	-fx-font-family: 'Segoe UI';
+	-fx-font-size: 14px;
+}
+
+.settings-item {
+	-fx-padding: 10 10 10 10;
+	-fx-border-width: 0 0 0 2;
+}
+
+.settings-item-title {
+	-fx-font-family: 'Segoe UI';
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
+	-fx-wrap-text: true;
+}
+
+
+/* ========================================================================== */
+/* TreeView */
+/* ========================================================================== */
+.tree-view {
+	/* -fx-border-width: 1px; */
+	-fx-padding: 5px;
+	-fx-font-size: 14px;
+	-fx-font-family: "Segoe UI";
+}
+
+.tree-view .tree-cell {
+	-fx-padding: 5px 10px;
+	-fx-cell-size: 24px;
+}
+
+/* .tree-view .tree-cell:expanded {
+}
+
+.tree-view .tree-cell:collapsed {
+}
+
+.tree-view .tree-cell:selected {
+}
+
+.tree-view .tree-cell:focused {
+} */
+
+/* ========================================================================== */
+/* Other */
+/* ========================================================================== */
+
+.search-bar {
+	-fx-border-width: 0 0 1 0;
+}
+
+.navBarRoot {
+	-fx-border-width: 0 1 0 0;
+}
+
+.search-bar {
+	-fx-pref-height: 30px;
+	-fx-font-size: 14px;
+}
+
+.tab-pane {
+	-fx-padding: 10;
+}
+
+.split-pane {
+	-fx-divider-position: 0.3;
+}
+
+.tree-view {
+	-fx-background-color: transparent;
+	-fx-padding: 10;
+}
+
+.settings-detail-view {
+	-fx-padding: 10;
+	-fx-spacing: 10;
+}
+
+.grid-pane {
+	-fx-hgap: 10;
+	-fx-vgap: 10;
+}
+
+/* .combo-box,
+.slider,
+.check-box {
+	-fx-pref-width: 200px;
+} */
+
+/* .button {
+    -fx-pref-width: 80px;
+    -fx-padding: 5 10;
+} */
+
+.hbox {
+	-fx-spacing: 10;
+	-fx-alignment: center-right;
+}
+
+
+
+
+
+
+/* .button {
+	-fx-background-radius: 5;
+	-fx-border-radius: 5;
+	-fx-padding: 10 10 10 10;
+} */
+
 .nav-button {
 	-fx-padding: 10 10 10 15;
 	-fx-background-radius: 0;
@@ -5,19 +142,122 @@
 	-fx-border-width: 0 0 0 2;
 	-fx-effect: null;
 	-fx-font-size: 28px;
-	-fx-alignment: CENTER_LEFT; /* Align content to the left */
-	/* -fx-content-display: LEFT; */
+	-fx-alignment: CENTER_LEFT;
 }
 
 .nav-icon {
 	-fx-alignment: CENTER;
 }
 
-/* .nav-button:hover {
 
-	
+/* ========================================================================== */
+/* Menu */
+/* ========================================================================== */
+
+.menu-bar {
+	-fx-padding: 5 5 5 5;
+}
+
+.menu-bar .menu:hover,
+.menu-bar .menu:showing,
+.menu-bar .menu .menu-item:hover,
+.menu-bar .menu .menu-item.menu-item:focused {
+	-fx-background-radius: 5;
+}
+
+/* ========================================================================== */
+/* Context Menu */
+/* ========================================================================== */
+
+.context-menu {
+	-fx-background-radius: 5;
+	-fx-border-radius: 5;
+	-fx-padding: 5 5 5 5;
+}
+
+.context-menu>*>.separator>.line {
+	-fx-border-insets: 5 0 5 0;
+}
+
+/* ========================================================================== */
+/* CheckBox */
+/* ========================================================================== */
+
+/* .check-box {
 } */
 
-.navBar {
-	-fx-border-width: 0 1 0 0;
+.check-box .box {
+	-fx-border-radius: 3px;
+
 }
+
+.check-box:selected .mark {
+
+	-fx-background-color: #bfc9ce;
+
+}
+
+/* ========================================================================== */
+/* TextField */
+/* ========================================================================== */
+
+.text-field {
+
+	-fx-border-radius: 3px;
+	-fx-padding: 10;
+}
+
+.text-field:focused {
+
+	-fx-border-radius: 3px;
+}
+
+.optionTextField {
+	-fx-padding: 3 10 3 10;
+	-fx-pref-width: 75;
+}
+
+/* ========================================================================== */
+/* SplitPane */
+/* ========================================================================== */
+
+.split-pane {
+	-fx-border-width: 1px;
+}
+
+.split-pane:horizontal .split-pane-divider {
+	-fx-padding: 0 1px 0 0;
+	-fx-cursor: h-resize;
+}
+
+.split-pane:vertical .split-pane-divider {
+	-fx-padding: 0 0 1px 0;
+	-fx-cursor: v-resize;
+}
+
+/* ========================================================================== */
+/* ComboBox */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/* ComboBox */
+/* ========================================================================== */
+
+.combo-box {
+	-fx-border-radius: 3px;
+}
+
+/* .combo-box .arrow-button {
+} */
+
+/* .combo-box .arrow-button .arrow {
+} */
+
+/* .combo-box .list-cell {
+} */
+
+/* .combo-box .list-cell:filled:selected, .combo-box .list-cell:filled:hover {
+} */
+
+/* .combo-box .list-view {
+} */

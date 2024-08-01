@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeItem?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<!-- <?import java.lang.String?> -->
+
+<VBox fx:id="settingsRoot" spacing="10" styleClass="settingsRoot"
+	xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="jwilliams132.Controller_Settings">
+	<padding>
+		<Insets bottom="10" left="100" right="100" top="10" />
+	</padding>
+
+	<!-- Search Bar -->
+	<HBox styleClass="search-bar">
+		<padding>
+			<Insets bottom="30" left="0" right="0" top="10" />
+		</padding>
+		<TextField fx:id="searchBar" promptText="Search settings..." HBox.hgrow="ALWAYS" />
+	</HBox>
+
+	<!-- SplitPane for category navigation and settings detail view -->
+	<SplitPane dividerPositions="0.25" orientation="HORIZONTAL" styleClass="split-pane"
+		VBox.vgrow="ALWAYS">
+
+		<!-- Left Column: Tree structure for categories -->
+		<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="settings-left">
+			<TreeView fx:id="categoryTreeView" styleClass="tree-view">
+				<TreeItem fx:id="rootItem" value="Settings" />
+			</TreeView>
+		</ScrollPane>
+
+		<!-- Right Column: Detailed settings view -->
+		<ScrollPane fx:id="settingsScrollPane" fitToHeight="true" fitToWidth="true"
+			styleClass="settings-right">
+			<VBox fx:id="settingsDetailView" spacing="10" styleClass="settings-detail-view">
+				<!-- Place any Settings Items in here -->
+
+				<Label styleClass="settings-section-title" text="General" />
+				<VBox spacing="5" styleClass="settings-item">
+
+					<!-- Title Label -->
+					<Label styleClass="settings-item-title" text="Show Navigation Bar Labels" />
+
+					<!-- CheckBox with Wrapped Text -->
+					<CheckBox fx:id="navBarDescriptionsBox"
+						onAction="#handleCheckBoxAction"
+						alignment="TOP_LEFT"
+						maxWidth="Infinity"
+						styleClass="settings-item-checkbox"
+						text="Controls whether the Navigation Bar descriptions are visible."
+						wrapText="true" />
+				</VBox>
+
+				<VBox spacing="5" styleClass="settings-item">
+
+					<!-- Title Label -->
+					<Label styleClass="settings-item-title" text="Lorem ipsum dolor" />
+
+					<!-- CheckBox with Wrapped Text -->
+					<CheckBox fx:id="secondBox"
+						onAction="#handleCheckBoxAction"
+						alignment="TOP_LEFT"
+						maxWidth="Infinity"
+						styleClass="settings-item-checkbox"
+						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+						wrapText="true" />
+				</VBox>
+
+				<VBox spacing="5" styleClass="settings-item">
+
+					<!-- Title Label -->
+					<Label styleClass="settings-item-title" text="Sed ut perspiciatis" />
+
+					<!-- CheckBox with Wrapped Text -->
+					<CheckBox fx:id="thirdBox"
+						onAction="#handleCheckBoxAction"
+						alignment="TOP_LEFT"
+						maxWidth="Infinity"
+						styleClass="settings-item-checkbox"
+						text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+						wrapText="true" />
+				</VBox>
+
+				<VBox spacing="5" styleClass="settings-item">
+
+					<!-- Title Label -->
+					<Label styleClass="settings-item-title" text="At vero eos" />
+
+					<!-- CheckBox with Wrapped Text -->
+					<CheckBox fx:id="fourthBox"
+						onAction="#handleCheckBoxAction"
+						alignment="TOP_LEFT"
+						maxWidth="Infinity"
+						styleClass="settings-item-checkbox"
+						text="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
+						wrapText="true" />
+				</VBox>
+
+				<Label styleClass="settings-section-title" text="Appearance" />
+
+				<VBox spacing="5" styleClass="settings-item">
+
+					<!-- Title Label -->
+					<Label styleClass="settings-item-title" text="Color Theme" />
+
+					<!-- CheckBox with Wrapped Text -->
+					<Label styleClass="settings-item-description"
+						text="Specifies the color theme used in the program" />
+
+					<!-- ComboBox with predefined items -->
+					<ComboBox fx:id="comboBox"
+						onAction="#handleComboBoxAction"
+						prefWidth="200">
+						<items>
+							<FXCollections fx:factory="observableArrayList">
+								<String fx:value="Dark Theme" />
+								<String fx:value="Light Theme" />
+							</FXCollections>
+						</items>
+					</ComboBox>
+				</VBox>
+			</VBox>
+		</ScrollPane>
+
+	</SplitPane>
+
+</VBox>
