@@ -43,10 +43,12 @@ public class App extends Application {
 
 			e.printStackTrace();
 		}
-		root.getStylesheets().add(CSS_Styles);
-		root.getStylesheets().add(CSS_Colors_Dark);
 
 		scene = new Scene(root, 1600, 900); // 1300, 600
+		if (!root.getStylesheets().add(CSS_Styles))
+			System.err.println("Element_Styles.css was not added correctly.");
+		if (!root.getStylesheets().add(CSS_Colors_Dark))
+			System.err.println("Element_Colors_Dark.css was not added correctly.");
 
 		window.setScene(scene);
 		// window.setMaximized(true);
