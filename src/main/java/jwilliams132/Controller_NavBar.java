@@ -1,17 +1,17 @@
 package jwilliams132;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
-
-import org.kordamp.ikonli.javafx.FontIcon;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
-import org.kordamp.ikonli.materialdesign2.*;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignR;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignT;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignV;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class Controller_NavBar {
 
@@ -100,16 +100,6 @@ public class Controller_NavBar {
 			reportsButton.setText("  Reports");
 			settingsButton.setText("  Settings");
 		}
-
-		Set<Button> navButtons = new TreeSet<Button>();
-
-		// dashboardButton
-		// salesButton
-		// purchasesButton
-		// inventoryButton
-		// accountingButton
-		// reportsButton
-		// settingsButton
 	}
 
 	private void handleButtonClick(Button button, FontIcon fontIcon) {
