@@ -1,6 +1,8 @@
 .mainRoot {
 	-fx-background-color: #101a29;
 }
+
+.startupRoot,
 .dashboardRoot,
 .salesRoot,
 .purchasesRoot,
@@ -24,34 +26,87 @@
 .dashboardRoot,
 .salesRoot,
 .purchasesRoot,
-.inventoryRoot,
 .reportsRoot,
 .navBarRoot,
 .search-bar {
 	-fx-border-color: #070c13;
 }
 
+/* ========================================================================== */
+/* Button */
+/* ========================================================================== */
+
+.button {
+	-fx-background-color: #291b2d;
+	-fx-border-color: #92315a;
+	-fx-text-fill: #afccd6;
+}
+
+.button:hover {
+	-fx-background-color: #772c4d;
+}
+
+.button:disabled {
+	-fx-background-color: transparent;
+
+}
+
+.button-hover {
+	-fx-background-color: #772c4d;
+}
+
+.nav-button {
+
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+
+	-fx-text-fill: #afccd6;
+	-fx-fill: #415069
+}
+
+.nav-button.clicked {
+	-fx-background-color: #c93e7126;
+	-fx-border-color: #c93e71;
+	-fx-text-fill: #c93e71;
+	-fx-fill: #c93e71;
+}
+
+.nav-button:hover {
+
+	-fx-background-color: transparent;
+	-fx-text-fill: #c93e71;
+	-fx-fill: #c93e71;
+}
+
+/* ========================================================================== */
+/* Inventory */
+/* ========================================================================== */
+
+.pageHeader {
+	-fx-text-fill: #c93e71;
+}
+
+/* ========================================================================== */
+/* Settings */
+/* ========================================================================== */
+
 .settings-label {
 	-fx-text-fill: #bacbe4;
 }
 
-.settings-item-title {
-	-fx-text-fill: #c93e71;
-}
-.settings-item-description {
-	-fx-text-fill: #96afd5;
-}
+.settings-item-title,
 .settings-section-title {
 	-fx-text-fill: #c93e71;
 }
+
+.settings-item-description,
 .settings-item-checkbox {
 	-fx-text-fill: #96afd5;
 }
 
-.settings-item{
+.settings-item {
 	-fx-border-color: #101a29;
 }
-
 
 .settings-item:hover {
 	-fx-background-color: #c93e7107;
@@ -93,11 +148,11 @@
 /* ========================================================================== */
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #070c13;
+	-fx-background-color: #070c13;
 }
 
 .split-pane:vertical .split-pane-divider {
-    -fx-background-color: #070c13;
+	-fx-background-color: #070c13;
 }
 
 /* ========================================================================== */
@@ -105,76 +160,173 @@
 /* ========================================================================== */
 
 .combo-box {
-    -fx-background-color: #101A29;
-    -fx-border-color: #1e2d42;
-    -fx-text-fill: #bfccdf;
+	-fx-background-color: #101A29;
+	-fx-border-color: #1e2d42;
+	-fx-text-fill: #bfccdf;
 }
 
 .combo-box .arrow-button {
-    -fx-background-color: #101A29;
-    /* -fx-border-color: #1e2d42; */
+	-fx-background-color: #101A29;
+	/* -fx-border-color: #1e2d42; */
 }
 
 .combo-box .arrow-button .arrow {
-    -fx-background-color: #1e2d42;
+	-fx-background-color: #1e2d42;
 }
 
 .combo-box .list-cell {
-    -fx-background-color: #101A29;
-    -fx-text-fill: #bfccdf;
+	-fx-background-color: #101A29;
+	-fx-text-fill: #bfccdf;
 }
 
 .combo-box .list-cell:filled {
 	-fx-text-fill: #afccd6;
-} 
+}
+
 .combo-box .list-cell:filled:hover {
-    -fx-background-color: #441f30;
+	-fx-background-color: #441f30;
 }
 
 .combo-box .list-view {
-    -fx-background-color: #101A29;
-    -fx-border-color: #1e2d42;
-}
-/* .button {
-    -fx-background-color: #291b2d;
-    -fx-border-color: #92315a;
-    -fx-text-fill: #afccd6;
+	-fx-background-color: #101A29;
+	-fx-border-color: #1e2d42;
 }
 
-.button:hover {
-    -fx-background-color: #772c4d;
+/* ========================================================================== */
+/* Table */
+/* ========================================================================== */
+
+.table-view {
+	-fx-background-color: #0d1521;
+	-fx-table-cell-border-color: #1e2d42;
+	-fx-border-color: #92315a;
+	-fx-border-radius: 3px;
+	-fx-background-radius: 3px;
 }
 
-.button:disabled {
-    -fx-background-color: transparent;
-
-}
-
-.button-hover {
-    -fx-background-color: #772c4d;
-} */
-
-.nav-button {
-
+.table-view .column-header-background {
 	-fx-background-color: transparent;
-	-fx-border-color: transparent;
-
-	-fx-text-fill: #afccd6;
-	-fx-fill: #415069
 }
 
-.nav-button.clicked {
+.table-view .column-header {
 	-fx-background-color: #c93e7126;
-	-fx-border-color: #c93e71;
-	-fx-text-fill: #c93e71;
-	-fx-fill: #c93e71;
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
 }
 
-.nav-button:hover {
-
-	-fx-text-fill: #c93e71;
-	-fx-fill: #c93e71;
+.table-row-cell,
+.table-row-cell:even {
+	-fx-background-color: #101A29;
 }
+
+.table-row-cell:odd {
+	-fx-background-color: #0d1521;
+}
+
+.table-row-cell:selected {
+	-fx-background-color: #c93e7126;
+	-fx-table-cell-border-color: #1e2d42;
+}
+
+.table-cell {
+	-fx-background-color: transparent;
+}
+
+.table-view .table-cell,
+.table-view .table-cell:selected {
+	-fx-text-fill: #afccd6;
+}
+
+.table-view .column-header .label {
+	-fx-text-fill: #c93e71;
+}
+
+/* ========================================================================== */
+/* LineChart */
+/* ========================================================================== */
+
+.chart-plot-background {
+	-fx-background-color: #0d1521;
+	-fx-padding: 10;
+}
+
+.chart-content {
+	-fx-padding: 20px;
+}
+
+.chart-vertical-grid-lines,
+.chart-horizontal-grid-lines {
+	-fx-stroke: #1e2d42;
+}
+
+.chart-alternative-row-fill {
+	-fx-fill: #101A29;
+}
+
+.chart-title {
+	-fx-text-fill: #c93e71;
+	-fx-font-weight: bold;
+	-fx-font-size: 22px;
+}
+
+.axis {
+	-fx-tick-label-fill: #3788ba;
+	-fx-tick-mark-length: 10;
+	-fx-font-size: 14px;
+	-fx-minor-tick-count: 0;
+}
+
+.axis-label {
+	-fx-text-fill: #c93e71;
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+}
+
+.chart-legend {
+	-fx-background-color: #0d1521;
+}
+
+.chart-legend-item {
+	-fx-text-fill: #bfccdf;
+}
+
+.chart-series-line {
+	-fx-stroke-width: 2px;
+}
+
+.default-color0.chart-line-symbol,
+.default-color1.chart-line-symbol,
+.default-color2.chart-line-symbol,
+.default-color3.chart-line-symbol,
+.default-color4.chart-line-symbol,
+.default-color5.chart-line-symbol,
+.default-color6.chart-line-symbol,
+.default-color7.chart-line-symbol,
+.default-color8.chart-line-symbol,
+.default-color9.chart-line-symbol,
+.default-color10.chart-line-symbol,
+.default-color11.chart-line-symbol,
+.default-color12.chart-line-symbol,
+.default-color13.chart-line-symbol,
+.default-color14.chart-line-symbol,
+.default-color15.chart-line-symbol,
+.default-color16.chart-line-symbol,
+.default-color17.chart-line-symbol,
+.default-color18.chart-line-symbol,
+.default-color19.chart-line-symbol,
+.default-color20.chart-line-symbol {
+	-fx-background-radius: 0px;
+	-fx-padding: 0px;
+}
+
+.chart-legend-item .chart-line-symbol {
+	-fx-padding: 5px;
+	-fx-background-radius: 5px;
+}
+
+/* ========================================================================== */
+/* ComboBox */
+/* ========================================================================== */
 
 .navBar {
 	-fx-background-color: #0d1521;
@@ -183,7 +335,6 @@
 
 .editor {
 	-fx-background-color: #101a29;
-	/* -fx-border-color: #070c13; */
 }
 
 .primaryLabel {
@@ -247,14 +398,9 @@
 	-fx-border-color: #000000;
 }
 
-
 .context-menu>*>.separator>.line {
 	-fx-border-color: #2c1825;
 }
-
-/* .tab-pane {
-
-} */
 
 .tab-header-area {
 	-fx-background-color: #101a29;
@@ -281,8 +427,6 @@
 .tab-content-area {
 	-fx-background-color: #101a29;
 }
-
-
 
 .menu-bar {
 	-fx-background-color: #070c13;
@@ -362,4 +506,176 @@
 
 .text-field:focused {
 	-fx-border-color: #49324e;
+}
+
+/* ========================================================================== */
+/* Chart Series Colors */
+/* ========================================================================== */
+
+.default-color0.chart-series-line {
+	-fx-stroke: #c93e71;
+}
+
+.default-color1.chart-series-line {
+	-fx-stroke: #00b3bd;
+}
+
+.default-color2.chart-series-line {
+	-fx-stroke: #a9dc76;
+}
+
+.default-color3.chart-series-line {
+	-fx-stroke: #e15fd8;
+}
+
+.default-color4.chart-series-line {
+	-fx-stroke: #ff4319;
+}
+
+.default-color5.chart-series-line {
+	-fx-stroke: #81b88b;
+}
+
+.default-color6.chart-series-line {
+	-fx-stroke: #355484;
+}
+
+.default-color7.chart-series-line {
+	-fx-stroke: #c74e39;
+}
+
+.default-color8.chart-series-line {
+	-fx-stroke: #e2c08d;
+}
+
+.default-color9.chart-series-line {
+	-fx-stroke: #8db9e2;
+}
+
+.default-color10.chart-series-line {
+	-fx-stroke: #e9967a;
+}
+
+.default-color11.chart-series-line {
+	-fx-stroke: #f0e68c;
+}
+
+.default-color12.chart-series-line {
+	-fx-stroke: #dda0dd;
+}
+
+.default-color13.chart-series-line {
+	-fx-stroke: #eab543;
+}
+
+.default-color14.chart-series-line {
+	-fx-stroke: #34ace0;
+}
+
+.default-color15.chart-series-line {
+	-fx-stroke: #ff6347;
+}
+
+.default-color16.chart-series-line {
+	-fx-stroke: #4682b4;
+}
+
+.default-color17.chart-series-line {
+	-fx-stroke: #6a5acd;
+}
+
+.default-color18.chart-series-line {
+	-fx-stroke: #bc8f8f;
+}
+
+.default-color19.chart-series-line {
+	-fx-stroke: #d2691e;
+}
+
+.default-color20.chart-series-line {
+	-fx-stroke: #a52a2a;
+}
+
+.default-color0.chart-line-symbol {
+	-fx-background-color: #c93e71, transparent;
+}
+
+.default-color1.chart-line-symbol {
+	-fx-background-color: #00b3bd, transparent;
+}
+
+.default-color2.chart-line-symbol {
+	-fx-background-color: #a9dc76, transparent;
+}
+
+.default-color3.chart-line-symbol {
+	-fx-background-color: #e15fd8, transparent;
+}
+
+.default-color4.chart-line-symbol {
+	-fx-background-color: #ff4319, transparent;
+}
+
+.default-color5.chart-line-symbol {
+	-fx-background-color: #81b88b, transparent;
+}
+
+.default-color6.chart-line-symbol {
+	-fx-background-color: #355484, transparent;
+}
+
+.default-color7.chart-line-symbol {
+	-fx-background-color: #c74e39, transparent;
+}
+
+.default-color8.chart-line-symbol {
+	-fx-background-color: #e2c08d, transparent;
+}
+
+.default-color9.chart-line-symbol {
+	-fx-background-color: #8db9e2, transparent;
+}
+
+.default-color10.chart-line-symbol {
+	-fx-background-color: #e9967a, transparent;
+}
+
+.default-color11.chart-line-symbol {
+	-fx-background-color: #f0e68c, transparent;
+}
+
+.default-color12.chart-line-symbol {
+	-fx-background-color: #dda0dd, transparent;
+}
+
+.default-color13.chart-line-symbol {
+	-fx-background-color: #eab543, transparent;
+}
+
+.default-color14.chart-line-symbol {
+	-fx-background-color: #34ace0, transparent;
+}
+
+.default-color15.chart-line-symbol {
+	-fx-background-color: #ff6347, transparent;
+}
+
+.default-color16.chart-line-symbol {
+	-fx-background-color: #4682b4, transparent;
+}
+
+.default-color17.chart-line-symbol {
+	-fx-background-color: #6a5acd, transparent;
+}
+
+.default-color18.chart-line-symbol {
+	-fx-background-color: #bc8f8f, transparent;
+}
+
+.default-color19.chart-line-symbol {
+	-fx-background-color: #d2691e, transparent;
+}
+
+.default-color20.chart-line-symbol {
+	-fx-background-color: #a52a2a, transparent;
 }
