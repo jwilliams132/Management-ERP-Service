@@ -7,6 +7,7 @@ module jwilliams132 {
 	requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.materialdesign2;
+	requires javafx.base;
 
 	opens jwilliams132 to javafx.fxml;
 
