@@ -26,7 +26,7 @@ public class Controller_Inventory {
     @FXML
     private TableColumn<Tire, String> itemIdColumn;
     @FXML
-    private TableColumn<Tire, TireModelType> modelColumn;
+    private TableColumn<Tire, ModelType> modelColumn;
     @FXML
     private TableColumn<Tire, String> tireSizeColumn;
     @FXML
@@ -46,7 +46,7 @@ public class Controller_Inventory {
 
         setRightAlignment(tireCountColumn);
 
-        Inventory_Manager inventory_Manager = new Inventory_Manager();
+        Stored_Files_Manager inventory_Manager = new Stored_Files_Manager();
         tireList = inventory_Manager.getTireInventory();
         tireTableView.setItems(tireList);
 
