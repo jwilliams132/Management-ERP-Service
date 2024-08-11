@@ -1,63 +1,92 @@
 package jwilliams132;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Customer {
 
-	private String name,
+	private final StringProperty name,
 			phone,
 			email,
 			address;
 
-	public Customer() {
+	public Customer(String name,
+			String phone,
+			String email,
+			String address) {
 
+		this.name = new SimpleStringProperty(name);
+		this.phone = new SimpleStringProperty(phone);
+		this.email = new SimpleStringProperty(email);
+		this.address = new SimpleStringProperty(address);
 	}
 
-	public Customer(String name, String phone, String email, String address) {
-
-		this.name = name;
-		this.phone = phone;
-		this.email = email;
-		this.address = address;
-	}
-
-
-
+	// Getter and setter for name
 	public String getName() {
-		
-		return name;
+
+		return name.get();
 	}
 
 	public void setName(String name) {
 
-		this.name = name;
+		this.name.set(name);
 	}
 
+	public StringProperty nameProperty() {
+
+		return name;
+	}
+
+	// Getter and setter for phone
 	public String getPhone() {
 
-		return phone;
+		return phone.get();
 	}
 
 	public void setPhone(String phone) {
 
-		this.phone = phone;
+		this.phone.set(phone);
 	}
 
+	public StringProperty phoneProperty() {
+
+		return phone;
+	}
+
+	// Getter and setter for email
 	public String getEmail() {
+
+		return email.get();
+	}
+
+	public void setEmail(String email) {
+
+		this.email.set(email);
+	}
+
+	public StringProperty emailProperty() {
 
 		return email;
 	}
 
-	public void setEmail(String email) {
-		
-		this.email = email;
-	}
-
+	// Getter and setter for address
 	public String getAddress() {
-		
-		return address;
+
+		return address.get();
 	}
 
 	public void setAddress(String address) {
 
-		this.address = address;
+		this.address.set(address);
+	}
+
+	public StringProperty addressProperty() {
+
+		return address;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", phone=" + phone + ", email=" + email + ", address=" + address + "]";
 	}
 }

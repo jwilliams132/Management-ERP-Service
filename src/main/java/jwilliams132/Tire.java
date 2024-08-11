@@ -102,4 +102,22 @@ public class Tire {
 
 		this.suggestedRetailPrice = suggestedRetailPrice;
 	}
+
+	public BigDecimal getPriceForCategory(Price_Category category) {
+
+		switch (category) {
+
+			case DEALER_20_PLUS:
+				return over20PerOrderDealerPrice;
+
+			case DEALER:
+				return dealerPrice;
+
+			case SUGGESTED_RETAIL:
+				return suggestedRetailPrice;
+				
+			default:
+				return null;
+		}
+	}
 }

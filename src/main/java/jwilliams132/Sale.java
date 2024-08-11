@@ -7,23 +7,24 @@ public class Sale extends Transaction {
 
 	private Customer customer;
 	private Price_Category priceCategory;
-	private BigDecimal price;
+	private BigDecimal totalPrice;
 
 	public Sale() {
 
 	}
 
 	public Sale(LocalDateTime time,
+			int transactionID,
 			String skuNumber,
 			int quantity,
 			Customer customer,
 			Price_Category priceCategory,
-			BigDecimal price) {
+			BigDecimal totalPrice) {
 
-		super(time, skuNumber, quantity);
+		super(time, transactionID, skuNumber, quantity);
 		this.customer = customer;
 		this.priceCategory = priceCategory;
-		this.price = price;
+		this.totalPrice = totalPrice;
 	}
 
 	public Customer getCustomer() {
@@ -46,13 +47,31 @@ public class Sale extends Transaction {
 		this.priceCategory = priceCategory;
 	}
 
-	public BigDecimal getPrice() {
+	public BigDecimal getTotalPrice() {
 
-		return price;
+		return totalPrice;
 	}
 
-	public void setPrice(BigDecimal price) {
-		
-		this.price = price;
+	public void setTotalPrice(BigDecimal totalPrice) {
+
+		this.totalPrice = totalPrice;
+	}
+
+	@Override
+	public String toString() {
+
+		return "Sale [customer=" + customer + ", priceCategory=" + priceCategory + ", totalPrice=" + totalPrice + "]";
+	}
+
+	public void print() {
+
+		System.out.println();
+		System.out.println("Sale  " + "=".repeat(50));
+			System.out.println("--- Transaction ID:  " + getTransactionID());
+			System.out.println("--------- Customer:  " + getCustomer());
+			System.out.println("--------- Tire SKU:  " + getSkuNumber());
+			System.out.println("--------- Quantity:  " + getQuantity());
+			System.out.println("--- Price_Category:  " + getPriceCategory());
+			System.out.println("------ Total Price:  " + getTotalPrice());
 	}
 }

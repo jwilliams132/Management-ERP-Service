@@ -12,11 +12,12 @@ public class Purchase extends Transaction {
 	}
 
 	public Purchase(LocalDateTime time,
+			int transactionID,
 			String skuNumber,
 			int quantity,
 			BigDecimal purchasePrice) {
 
-		super(time, skuNumber, quantity);
+		super(time, transactionID, skuNumber, quantity);
 		this.purchasePrice = purchasePrice;
 	}
 

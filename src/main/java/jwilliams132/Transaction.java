@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class Transaction {
 
 	private LocalDateTime time;
+	private int transactionID;
 	private String skuNumber;
 	private int quantity;
 
@@ -12,9 +13,13 @@ public class Transaction {
 
 	}
 
-	public Transaction(LocalDateTime time, String skuNumber, int quantity) {
+	public Transaction(LocalDateTime time,
+			int transactionID,
+			String skuNumber,
+			int quantity) {
 
 		this.time = time;
+		this.transactionID = transactionID;
 		this.skuNumber = skuNumber;
 		this.quantity = quantity;
 	}
@@ -27,6 +32,16 @@ public class Transaction {
 	public void setTime(LocalDateTime time) {
 
 		this.time = time;
+	}
+
+	public int getTransactionID() {
+
+		return transactionID;
+	}
+
+	public void setTransactionID(int transactionID) {
+
+		this.transactionID = transactionID;
 	}
 
 	public String getSkuNumber() {
@@ -45,7 +60,7 @@ public class Transaction {
 	}
 
 	public void setQuantity(int quantity) {
-		
+
 		this.quantity = quantity;
 	}
 }
