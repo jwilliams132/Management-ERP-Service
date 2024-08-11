@@ -25,7 +25,6 @@ public class Controller_Main {
 	private Controller_Reports reportsController;
 	private Controller_Sales salesController;
 	private Controller_Settings settingsController;
-	private Controller_Startup startupController;
 
 	private Stored_Files_Manager storageManager = new Stored_Files_Manager();
 
@@ -92,10 +91,14 @@ public class Controller_Main {
 
 			case CUSTOMERS:
 				customersController = loader.getController();
+				customersController.setStorageManager(storageManager);
+				customersController.setup();
 				break;
 
 			case DASHBOARD:
 				dashboardController = loader.getController();
+				dashboardController.setStorageManager(storageManager);
+				dashboardController.setup();
 				break;
 
 			case INVENTORY:
@@ -106,14 +109,17 @@ public class Controller_Main {
 
 			case PURCHASES:
 				purchasesController = loader.getController();
+				purchasesController.setStorageManager(storageManager);
+				purchasesController.setup();
 				break;
 
 			case REPORTS:
 				reportsController = loader.getController();
+				reportsController.setStorageManager(storageManager);
+				reportsController.setup();
 				break;
 
 			case SALES:
-			System.out.println("Bitch");
 				salesController = loader.getController();
 				salesController.setStorageManager(storageManager);
 				salesController.setup();
@@ -127,7 +133,6 @@ public class Controller_Main {
 
 			case STARTUP:
 				loader.getController();
-				startupController = loader.getController();
 				break;
 
 			default:

@@ -1,6 +1,9 @@
 package jwilliams132;
 
 public class Controller_Reports {
+
+	private Stored_Files_Manager storageManager;
+
 	/**
 	 * types of reports:
 	 * Customer based history - list of all sales to specific customer
@@ -11,4 +14,12 @@ public class Controller_Reports {
 	 * 
 	 */
 
+	public void setup() {
+		
+	}
+
+	public void setStorageManager(Stored_Files_Manager storageManager) {
+
+		this.storageManager = storageManager;
+	}
 }
