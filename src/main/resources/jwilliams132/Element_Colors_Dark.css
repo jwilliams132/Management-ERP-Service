@@ -23,10 +23,6 @@
 }
 
 .mainRoot,
-.dashboardRoot,
-.salesRoot,
-.purchasesRoot,
-.reportsRoot,
 .navBarRoot,
 .search-bar {
 	-fx-border-color: #070c13;
@@ -76,6 +72,55 @@
 	-fx-background-color: transparent;
 	-fx-text-fill: #c93e71;
 	-fx-fill: #c93e71;
+}
+
+/* ========================================================================== */
+/* Labels */
+/* ========================================================================== */
+
+.sales-page-entry-bar-title {
+	-fx-text-fill: #c93e71;
+}
+
+/* ========================================================================== */
+/* TextField */
+/* ========================================================================== */
+
+.text-field {
+	-fx-border-color: #1e2d42;
+	-fx-background-color: transparent;
+	-fx-text-fill: #bfccdf;
+	-fx-highlight-fill: #5b2946;
+}
+
+.text-field:focused {
+	-fx-border-color: #49324e;
+}
+
+.valid {
+	-fx-text-fill: #bfccdf;
+}
+
+.invalid {
+	-fx-text-fill: red;
+}
+
+.not-found {
+	-fx-text-fill: orange;
+}
+
+/* ========================================================================== */
+/* Separator */
+/* ========================================================================== */
+
+.separator {
+	-fx-background-color: #1e2d42;
+}
+
+.separator .line {
+	-fx-border-color: null;
+	-fx-pref-height: 1;
+
 }
 
 /* ========================================================================== */
@@ -160,13 +205,21 @@
 /* ========================================================================== */
 
 .combo-box {
-	-fx-background-color: #101A29;
+	-fx-background-color: transparent;
 	-fx-border-color: #1e2d42;
 	-fx-text-fill: #bfccdf;
 }
 
+.combo-box:showing {
+	-fx-border-color: #92315a;
+}
+
+.combo-box:showing .arrow-button .arrow {
+	-fx-background-color: #92315a;
+}
+
 .combo-box .arrow-button {
-	-fx-background-color: #101A29;
+	-fx-background-color: transparent;
 	/* -fx-border-color: #1e2d42; */
 }
 
@@ -175,8 +228,8 @@
 }
 
 .combo-box .list-cell {
-	-fx-background-color: #101A29;
-	-fx-text-fill: #bfccdf;
+	-fx-background-color: transparent;
+	-fx-text-fill: #afccd6;
 }
 
 .combo-box .list-cell:filled {
@@ -184,7 +237,7 @@
 }
 
 .combo-box .list-cell:filled:hover {
-	-fx-background-color: #441f30;
+	-fx-background-color: #291b2d;
 }
 
 .combo-box .list-view {
@@ -207,6 +260,11 @@
 .table-view .column-header-background {
 	-fx-background-color: transparent;
 }
+
+.table-view .column-header-background .filler {
+	-fx-background-color: #c93e7126;
+}
+
 
 .table-view .column-header {
 	-fx-background-color: #c93e7126;
@@ -325,7 +383,111 @@
 }
 
 /* ========================================================================== */
-/* ComboBox */
+/* ScrollPane */
+/* ========================================================================== */
+.scroll-pane {
+	-fx-background-color: transparent;
+	-fx-border-width: 0;
+}
+
+.scroll-pane .viewport {
+	-fx-background-color: transparent;
+	-fx-border-width: 0;
+
+}
+
+
+
+/* ========================================================================== */
+/* ScrollBar */
+/* ========================================================================== */
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+	-fx-background-color: #281f33;
+}
+
+/* Remove the increment button */
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal,
+.scroll-bar:vertical .increment-button .increment-arrow,
+.scroll-bar:vertical .increment-button .increment-arrow,
+.scroll-bar:vertical .decrement-button .decrement-arrow,
+.scroll-bar:vertical .decrement-button .decrement-arrow,
+.scroll-bar:horizontal .increment-button .increment-arrow,
+.scroll-bar:horizontal .decrement-button .decrement-arrow,
+.scroll-bar:horizontal .increment-button .increment-arrow,
+.scroll-bar:horizontal .decrement-button .decrement-arrow {
+	-fx-background-color: transparent;
+}
+
+/* ========================================================================== */
+/* Tab Pane */
+/* ========================================================================== */
+
+.tab-pane .tab {
+	-fx-background-color: #0d1521;
+}
+
+.tab {
+	-fx-padding: 5 10;
+	/* -fx-font-size: 14px; */
+	-fx-border-radius: 3px 3px 0px 0px;
+	-fx-border-width: 1 1 0 1;
+}
+
+.tab:selected {
+	-fx-border-color: #c93e71;
+}
+
+.tab-pane .tab .tab-label {
+	-fx-text-fill: #afccd6;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-font-family: 'Segoe UI';
+}
+
+.tab-pane .tab:selected .tab-label,
+.tab-pane .tab:hover .tab-label {
+	-fx-text-fill: #c93e71;
+}
+
+.tab-pane .tab:disabled .tab-label {
+	-fx-text-fill: #415069;
+}
+
+
+.tab-header-area {
+	-fx-padding: 0;
+	-fx-border-width: 0;
+}
+
+.tab-header-area .tab-header-background {
+	-fx-background-color: transparent;
+}
+
+
+.tab-content-area {
+	-fx-background-color: #0d15217e;
+	-fx-background-radius: 0px 3px 3px 3px;
+	-fx-padding: 0;
+	-fx-border-color: #92315a;
+	-fx-border-width: 1;
+	-fx-border-radius: 0px 3px 3px 3px;
+
+}
+
+.new-tab-open .tab-content-area {
+	-fx-border-radius: 0px 3px 3px 3px;
+}
+
+.edit-tab-open .tab-content-area {
+	-fx-border-radius: 3px 3px 3px 3px;
+}
+
+/* ========================================================================== */
+/*  */
 /* ========================================================================== */
 
 .navBar {
@@ -402,32 +564,6 @@
 	-fx-border-color: #2c1825;
 }
 
-.tab-header-area {
-	-fx-background-color: #101a29;
-	-fx-border-color: #070c13;
-}
-
-.tab {
-	-fx-background-color: #101a29;
-	-fx-text-fill: #c09b52;
-	-fx-border-color: #070c13;
-	-fx-effect: null;
-}
-
-.tab:selected {
-	-fx-background-color: #142133;
-	-fx-text-fill: #afccd6;
-	-fx-border-color: #c93e71;
-}
-
-.tab:hover {
-	-fx-background-color: #142133;
-}
-
-.tab-content-area {
-	-fx-background-color: #101a29;
-}
-
 .menu-bar {
 	-fx-background-color: #070c13;
 }
@@ -497,16 +633,7 @@
 
 }
 
-.text-field {
-	-fx-border-color: #1e2d42;
-	-fx-background-color: transparent;
-	-fx-text-fill: #bfccdf;
-	-fx-highlight-fill: #5b2946;
-}
 
-.text-field:focused {
-	-fx-border-color: #49324e;
-}
 
 /* ========================================================================== */
 /* Chart Series Colors */
