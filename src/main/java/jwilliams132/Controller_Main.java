@@ -18,19 +18,30 @@ public class Controller_Main {
 	@FXML
 	private BorderPane mainPane;
 
-	private Display currentDisplay = Display.STARTUP;
+	private Controller_Customers customersController;
+	private Controller_Dashboard dashboardController;
+	private Controller_Inventory inventoryController;
+	private Controller_Purchases purchasesController;
+	private Controller_Reports reportsController;
+	private Controller_Sales salesController;
+	private Controller_Settings settingsController;
+	private Controller_Startup startupController;
+
+	private Stored_Files_Manager storageManager = new Stored_Files_Manager();
+
+	private Display currentDisplay = Display.SALES;
 
 	@FXML
 	private void initialize() {
 
 		try {
-			
+
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("NavBar.fxml"));
 			mainPane.setLeft(loader.load());
 			Controller_NavBar navController = loader.getController();
 			navController.setMainController(this);
 		} catch (IOException e) {
-			
+
 			System.err.println("Issue with loading the NavBar fxml.");
 			e.printStackTrace();
 		}
@@ -63,45 +74,11 @@ public class Controller_Main {
 		this.currentDisplay = currentDisplay;
 		Node display = null;
 
-		String fxml;
-		switch (currentDisplay) {
-
-			case STARTUP:
-				fxml = "Startup.fxml";
-				break;
-
-			case DASHBOARD:
-				fxml = "Dashboard.fxml";
-				break;
-
-			case SALES:
-				fxml = "Sales.fxml";
-				break;
-
-			case PURCHASES:
-				fxml = "Purchases.fxml";
-				break;
-
-			case INVENTORY:
-				fxml = "Inventory.fxml";
-				break;
-
-			case REPORTS:
-				fxml = "Reports.fxml";
-				break;
-
-			case SETTINGS:
-				fxml = "Settings.fxml";
-				break;
-
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + currentDisplay);
-		}
-
+		String fxml = getFXMLFileName(currentDisplay);
+		FXMLLoader loader;
 		try {
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-
+			loader = new FXMLLoader(getClass().getResource(fxml));
 			display = loader.load();
 			mainPane.setCenter(display);
 
@@ -110,6 +87,85 @@ public class Controller_Main {
 			e.printStackTrace();
 			return false;
 		}
+
+		switch (currentDisplay) {
+
+			case CUSTOMERS:
+				customersController = loader.getController();
+				break;
+
+			case DASHBOARD:
+				dashboardController = loader.getController();
+				break;
+
+			case INVENTORY:
+				inventoryController = loader.getController();
+				inventoryController.setStorageManager(storageManager);
+				inventoryController.setup();
+				break;
+
+			case PURCHASES:
+				purchasesController = loader.getController();
+				break;
+
+			case REPORTS:
+				reportsController = loader.getController();
+				break;
+
+			case SALES:
+			System.out.println("Bitch");
+				salesController = loader.getController();
+				salesController.setStorageManager(storageManager);
+				salesController.setup();
+				break;
+
+			case SETTINGS:
+				settingsController = loader.getController();
+				settingsController.setStorageManager(storageManager);
+				break;
+
+			case STARTUP:
+				loader.getController();
+				startupController = loader.getController();
+				break;
+
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + currentDisplay);
+		}
+
 		return true;
+	}
+
+	private String getFXMLFileName(Display display) {
+
+		switch (currentDisplay) {
+
+			case CUSTOMERS:
+				return "Customer.fxml";
+
+			case DASHBOARD:
+				return "Dashboard.fxml";
+
+			case INVENTORY:
+				return "Inventory.fxml";
+
+			case PURCHASES:
+				return "Purchases.fxml";
+
+			case REPORTS:
+				return "Reports.fxml";
+
+			case SALES:
+				return "Sales.fxml";
+
+			case SETTINGS:
+				return "Settings.fxml";
+
+			case STARTUP:
+				return "Startup.fxml";
+
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + currentDisplay);
+		}
 	}
 }
