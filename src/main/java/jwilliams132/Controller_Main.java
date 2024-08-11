@@ -122,6 +122,7 @@ public class Controller_Main {
 			case SETTINGS:
 				settingsController = loader.getController();
 				settingsController.setStorageManager(storageManager);
+				settingsController.setup();
 				break;
 
 			case STARTUP:

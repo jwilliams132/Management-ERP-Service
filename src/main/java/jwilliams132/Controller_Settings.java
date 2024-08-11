@@ -30,8 +30,8 @@ public class Controller_Settings {
 	@FXML
 	private ComboBox<String> themeComboBox;
 
-	@FXML
-	private void initialize() {
+	public void setup() {
+		
 		// Initialize the TreeView with categories
 		TreeItem<String> rootItem = new TreeItem<>("Settings");
 		rootItem.setExpanded(true);
@@ -105,5 +105,10 @@ public class Controller_Settings {
 			System.out.println("Checkbox 4 selected: " + fourthBox.isSelected());
 			// Add your specific action for checkBox4
 		}
+	}
+
+	public void setStorageManager(Stored_Files_Manager storageManager) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'setStorageManager'");
 	}
 }

@@ -15,6 +15,7 @@ import javafx.util.Callback;
 
 public class Controller_Inventory {
 
+    private Stored_Files_Manager storageManager;
     @FXML
     private BorderPane inventoryRoot;
     
@@ -35,8 +36,7 @@ public class Controller_Inventory {
     private ObservableList<Tire> tireList = FXCollections.observableArrayList();
 
 
-    @FXML
-    public void initialize() {
+    public void setup() {
 
         // Set up TableColumn properties
         itemIdColumn.setCellValueFactory(new PropertyValueFactory<>("skuNumber"));
@@ -46,8 +46,7 @@ public class Controller_Inventory {
 
         setRightAlignment(tireCountColumn);
 
-        Stored_Files_Manager inventory_Manager = new Stored_Files_Manager();
-        tireList = inventory_Manager.getTireInventory();
+        tireList = storageManager.getTireInventory();
         tireTableView.setItems(tireList);
 
         populateLineChart(); // sample data
@@ -426,4 +425,9 @@ public class Controller_Inventory {
         lineChart.getData().add(series19);
         lineChart.getData().add(series20);
     }
+
+    public void setStorageManager(Stored_Files_Manager storageManager) {
+
+		this.storageManager = storageManager;
+	}
 }
