@@ -1,19 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableCell?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableRow?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import java.lang.String?>
 
-<VBox fx:id="salesRoot" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="jwilliams132.Controller_Sales" styleClass="salesRoot">
-	<Label fx:id="main" text="SALES" style="-fx-font-weight: bold;" styleClass="tertiaryLabel">
-        <font>
-            <Font name="Courier New" size="50" />
-        </font>
-    </Label>
-    <Label fx:id="secondary" text="Click an Icon on the Right To Get Started" styleClass="secondaryLabel">
-        <font>
-            <Font name="Courier New" size="16" />
-        </font>
-    </Label>
-</VBox>
+<BorderPane fx:id="salesRoot" xmlns="http://javafx.com/javafx/8.0.171"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="jwilliams132.Controller_Sales"
+    styleClass="salesRoot">
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <Label text="Sales" styleClass="pageHeader" />
+        </VBox>
+    </top>
+    <center>
+        <HBox>
+            <VBox>
+                <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <!-- Table View for Sales Records -->
+                <TableView fx:id="salesTableView" VBox.vgrow="ALWAYS" maxWidth="805" minWidth="805"
+                    prefWidth="805">
+                    <columns>
+                        <TableColumn fx:id="transactionIdColumn" text="Transaction ID"
+                            prefWidth="110" resizable="false" />
+                        <TableColumn fx:id="timeColumn" text="Time" prefWidth="120"
+                            resizable="false" />
+                        <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150"
+                            resizable="false" />
+                        <TableColumn fx:id="skuNumberColumn" text="SKU Number" prefWidth="105"
+                            resizable="false" />
+                        <TableColumn fx:id="quantitySoldColumn" text="Quantity Sold" prefWidth="105"
+                            resizable="false" />
+                        <TableColumn fx:id="priceCategoryColumn" text="Price Category"
+                            prefWidth="115" resizable="false" />
+                        <TableColumn fx:id="totalPriceColumn" text="Total Price" prefWidth="85"
+                            resizable="false" />
+                    </columns>
+                </TableView>
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+                    <Tab text="New Order" closable="false">
+                        <VBox spacing="10">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+
+                            <Label text="New Order" styleClass="sales-page-entry-bar-title" />
+                            <Separator />
+
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="Transaction ID:  " styleClass="settings-item-title" />
+                                <Label fx:id="newOrderTransactionID"
+                                    styleClass="settings-item-title" />
+                            </HBox>
+
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="Customer:" styleClass="settings-item-title"
+                                    prefWidth="110" />
+                                <ComboBox fx:id="customerComboBox_New" />
+                                <Button fx:id="newCustomerButton" text="+ New Customer"
+                                    onAction="#handleNewCustomerButton" />
+                            </HBox>
+
+                            <HBox HBox.hgrow="ALWAYS">
+                                <padding>
+                                    <Insets bottom="0" left="20" right="20" top="0" />
+                                </padding>
+                                <Separator HBox.hgrow="ALWAYS" />
+                            </HBox>
+
+                            <ScrollPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                                <content>
+                                    <VBox fx:id="tiresFieldsBox_New" spacing="10"
+                                        VBox.vgrow="ALWAYS" />
+                                </content>
+                            </ScrollPane>
+                            <Region VBox.vgrow="ALWAYS" />
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Button text="Submit Order" onAction="#handleSubmitOrder" />
+                                <Button text="Clear Fields" onAction="#handleClearFields_New" />
+                            </HBox>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Edit Order" closable="false">
+                        <VBox spacing="10">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+
+                            <Label text="Edit Order " styleClass="sales-page-entry-bar-title" />
+                            <Separator />
+
+                            <Label text="Transaction ID:" styleClass="settings-item-title" />
+                            <TextField fx:id="transactionIDTextField_Edit" />
+
+                            <Label text="Customer:" styleClass="settings-item-title" />
+                            <ComboBox fx:id="customerComboBox_Edit" />
+
+                            <ScrollPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                                <content>
+                                    <VBox fx:id="tiresFieldsBox_Edit" spacing="10"
+                                        VBox.vgrow="ALWAYS" />
+                                </content>
+                            </ScrollPane>
+
+                            <!-- <Label text="Tire:" styleClass="settings-item-title" />
+                            <ComboBox fx:id="tireComboBox_Edit" />
+                            
+                            <Label text="Quantity:" styleClass="settings-item-title" />
+                            <TextField fx:id="quantityTextField_Edit" />
+
+                            <Label text="Price Category" styleClass="settings-item-title" />
+                            <ComboBox fx:id="priceCategoryComboBox_Edit" /> -->
+
+                            <HBox spacing="10">
+                                <Button text="Change Order" onAction="#handleChangeOrder" />
+                                <Button text="Clear Fields" onAction="#handleClearFields_Edit" />
+                            </HBox>
+                        </VBox>
+                    </Tab>
+                </TabPane>
+            </VBox>
+        </HBox>
+    </center>
+    <right>
+
+    </right>
+</BorderPane>
