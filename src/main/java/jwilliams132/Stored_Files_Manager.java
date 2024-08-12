@@ -263,10 +263,10 @@ public class Stored_Files_Manager {
 		Random random = new Random();
 		Transaction transactionEntry = null;
 
-		for (int i = 0, s = 0, p = 0; (s < 20 || p < 0); i++) {
+		for (int i = 0, s = 0, p = 0; (s < 0 || p < 20); i++) {
 
 			Customer customer = customerList.get(random.nextInt(customerList.size()));
-			int saleOrPurchase = 0;
+			int saleOrPurchase = 1;
 			List<Integer> usedTireIndexes = new ArrayList<Integer>();
 			for (int j = 0; j < 3; j++) {
 
