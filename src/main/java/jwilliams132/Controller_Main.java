@@ -147,7 +147,7 @@ public class Controller_Main {
 		switch (currentDisplay) {
 
 			case CUSTOMERS:
-				return "Customer.fxml";
+				return "Customers.fxml";
 
 			case DASHBOARD:
 				return "Dashboard.fxml";
