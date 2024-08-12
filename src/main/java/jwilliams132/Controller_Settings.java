@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 
 public class Controller_Settings {
 
+	private Stored_Files_Manager storageManager;
+
 	@FXML
 	private ScrollPane settingsScrollPane;
 
@@ -108,7 +110,7 @@ public class Controller_Settings {
 	}
 
 	public void setStorageManager(Stored_Files_Manager storageManager) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setStorageManager'");
+		
+		this.storageManager = storageManager;
 	}
 }
