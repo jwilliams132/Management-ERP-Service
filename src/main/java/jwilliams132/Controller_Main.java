@@ -28,11 +28,24 @@ public class Controller_Main {
 
 	private Stored_Files_Manager storageManager = new Stored_Files_Manager();
 
-	private Display currentDisplay = Display.SALES;
+	private Display currentDisplay = Display.PURCHASES;
 
 	@FXML
 	private void initialize() {
 
+		System.out.println(" _____                                                                   _____ \r\n" + //
+				"( ___ )                                                                 ( ___ )\r\n" + //
+				" |   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   | \r\n" + //
+				" |   |                                                                   |   | \r\n" + //
+				" |   |   _____ ____  ____    ____                                        |   | \r\n" + //
+				" |   |  | ____|  _ \\|  _ \\  |  _ \\ _ __ ___   __ _ _ __ __ _ _ __ ___    |   | \r\n" + //
+				" |   |  |  _| | |_) | |_) | | |_) | '__/ _ \\ / _` | '__/ _` | '_ ` _ \\   |   | \r\n" + //
+				" |   |  | |___|  _ <|  __/  |  __/| | | (_) | (_| | | | (_| | | | | | |  |   | \r\n" + //
+				" |   |  |_____|_| \\_\\_|     |_|   |_|  \\___/ \\__, |_|  \\__,_|_| |_| |_|  |   | \r\n" + //
+				" |   |                                       |___/                       |   | \r\n" + //
+				" |   |                                                                   |   | \r\n" + //
+				" |___|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|___| \r\n" + //
+				"(_____)                                                                 (_____)\n");
 		try {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("NavBar.fxml"));
