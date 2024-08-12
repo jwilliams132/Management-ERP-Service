@@ -8,9 +8,10 @@
 	styleClass="navBarRoot">
 
 	<Button fx:id="dashboardButton" styleClass="nav-button" onAction="#handleDashboardButtonAction" />
+	<Button fx:id="inventoryButton" styleClass="nav-button" onAction="#handleInventoryButtonAction" />
 	<Button fx:id="salesButton" styleClass="nav-button" onAction="#handleSalesButtonAction" />
 	<Button fx:id="purchasesButton" styleClass="nav-button" onAction="#handlePurchasesButtonAction" />
-	<Button fx:id="inventoryButton" styleClass="nav-button" onAction="#handleInventoryButtonAction" />
+	<Button fx:id="customersButton" styleClass="nav-button" onAction="#handleCustomersButtonAction" />
 	<Button fx:id="reportsButton" styleClass="nav-button" onAction="#handleReportsButtonAction" />
 	<Pane VBox.vgrow="always"/>
 	<Button fx:id="settingsButton" styleClass="nav-button" onAction="#handleSettingsButtonAction" />

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignR;
@@ -21,7 +22,8 @@ public class Controller_NavBar {
 			purchasesButton,
 			inventoryButton,
 			reportsButton,
-			settingsButton;
+			settingsButton,
+			customersButton;
 
 	List<Button> navButtons = new ArrayList<Button>();
 	List<FontIcon> navIcons = new ArrayList<FontIcon>();
@@ -30,7 +32,8 @@ public class Controller_NavBar {
 			purchasesIcon,
 			inventoryIcon,
 			reportsIcon,
-			settingsIcon;
+			settingsIcon,
+			customersIcon;
 
 	private Button activeButton;
 	private FontIcon activeFontIcon;
@@ -38,52 +41,58 @@ public class Controller_NavBar {
 
 	private Controller_Main mainController;
 
-    public void setMainController(Controller_Main mainController) {
+	public void setMainController(Controller_Main mainController) {
 
-        this.mainController = mainController;
-    }
+		this.mainController = mainController;
+	}
 
 	@FXML
 	private void initialize() {
 
 		navButtons.add(salesButton);
+		navButtons.add(inventoryButton);
 		navButtons.add(purchasesButton);
 		navButtons.add(dashboardButton);
-		navButtons.add(inventoryButton);
+		navButtons.add(customersButton);
 		navButtons.add(reportsButton);
 		navButtons.add(settingsButton);
 
 		navIcons.add(dashboardIcon);
+		navIcons.add(inventoryIcon);
 		navIcons.add(salesIcon);
 		navIcons.add(purchasesIcon);
-		navIcons.add(inventoryIcon);
+		navIcons.add(customersIcon);
 		navIcons.add(reportsIcon);
 		navIcons.add(settingsIcon);
-		
+
 		// Create icons and apply style classes
-        dashboardIcon = new FontIcon(MaterialDesignV.VIEW_DASHBOARD_VARIANT_OUTLINE); // Use Material Design icon
-        dashboardIcon.getStyleClass().add("nav-button");
-        dashboardButton.setGraphic(dashboardIcon);
+		dashboardIcon = new FontIcon(MaterialDesignV.VIEW_DASHBOARD_VARIANT_OUTLINE); // Use Material Design icon
+		dashboardIcon.getStyleClass().add("nav-button");
+		dashboardButton.setGraphic(dashboardIcon);
 
-        salesIcon = new FontIcon(MaterialDesignC.CART); // Use Material  icon
-        salesIcon.getStyleClass().add("nav-button");
-        salesButton.setGraphic(salesIcon);
+		inventoryIcon = new FontIcon(MaterialDesignP.PACKAGE_VARIANT_CLOSED); // Use Material icon
+		inventoryIcon.getStyleClass().add("nav-button");
+		inventoryButton.setGraphic(inventoryIcon);
 
-        purchasesIcon = new FontIcon(MaterialDesignR.RECEIPT); // Use Material  icon
-        purchasesIcon.getStyleClass().add("nav-button");
-        purchasesButton.setGraphic(purchasesIcon);
+		salesIcon = new FontIcon(MaterialDesignC.CART); // Use Material icon
+		salesIcon.getStyleClass().add("nav-button");
+		salesButton.setGraphic(salesIcon);
 
-        inventoryIcon = new FontIcon(MaterialDesignP.PACKAGE_VARIANT_CLOSED); // Use Material  icon
-        inventoryIcon.getStyleClass().add("nav-button");
-        inventoryButton.setGraphic(inventoryIcon);
+		purchasesIcon = new FontIcon(MaterialDesignR.RECEIPT); // Use Material icon
+		purchasesIcon.getStyleClass().add("nav-button");
+		purchasesButton.setGraphic(purchasesIcon);
 
-        reportsIcon = new FontIcon(MaterialDesignC.CHART_BAR_STACKED); // Use Material  icon
-        reportsIcon.getStyleClass().add("nav-button");
-        reportsButton.setGraphic(reportsIcon);
+		customersIcon = new FontIcon(MaterialDesignA.ACCOUNT_GROUP_OUTLINE); // Use Material icon
+		customersIcon.getStyleClass().add("nav-button");
+		customersButton.setGraphic(customersIcon);
 
-        settingsIcon = new FontIcon(MaterialDesignT.TUNE); // Use Material  icon
-        settingsIcon.getStyleClass().add("nav-button");
-        settingsButton.setGraphic(settingsIcon);
+		reportsIcon = new FontIcon(MaterialDesignC.CHART_BAR_STACKED); // Use Material icon
+		reportsIcon.getStyleClass().add("nav-button");
+		reportsButton.setGraphic(reportsIcon);
+
+		settingsIcon = new FontIcon(MaterialDesignC.COG); // Use Material icon
+		settingsIcon.getStyleClass().add("nav-button");
+		settingsButton.setGraphic(settingsIcon);
 
 		navButtons.forEach(button -> button.setPrefWidth(isNavTitlesVisible ? 230 : 75));
 		updateNavBarTitles();
@@ -94,9 +103,10 @@ public class Controller_NavBar {
 		if (isNavTitlesVisible) {
 
 			dashboardButton.setText("  Dashboard");
+			inventoryButton.setText("  Inventory");
 			salesButton.setText("  Sales");
 			purchasesButton.setText("  Purchases");
-			inventoryButton.setText("  Inventory");
+			customersButton.setText("  Customers");
 			reportsButton.setText("  Reports");
 			settingsButton.setText("  Settings");
 		}
@@ -110,7 +120,7 @@ public class Controller_NavBar {
 			activeFontIcon.getStyleClass().remove("clicked");
 		}
 		if (button.equals(activeButton)) {
-			
+
 			activeButton = null;
 			activeFontIcon = null;
 			mainController.loadDisplayFXML(Display.STARTUP);
@@ -129,26 +139,7 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.DASHBOARD);
 		handleButtonClick(dashboardButton, dashboardIcon);
-		System.out.println("Dashboard button clicked!");
-		// Add your action handling code here
-	}
-
-	@FXML
-	private void handleSalesButtonAction() {
-
-		mainController.loadDisplayFXML(Display.SALES);
-		handleButtonClick(salesButton, salesIcon);
-		System.out.println("Sales button clicked!");
-		// Add your action handling code here
-	}
-
-	@FXML
-	private void handlePurchasesButtonAction() {
-
-		mainController.loadDisplayFXML(Display.PURCHASES);
-		handleButtonClick(purchasesButton, purchasesIcon);
-		System.out.println("Purchases button clicked!");
-		// Add your action handling code here
+		// System.out.println("Dashboard button clicked!");
 	}
 
 	@FXML
@@ -156,16 +147,39 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.INVENTORY);
 		handleButtonClick(inventoryButton, inventoryIcon);
-		System.out.println("Inventory button clicked!");
-		// Add your action handling code here
+		// System.out.println("Inventory button clicked!");
 	}
+
+	@FXML
+	private void handleSalesButtonAction() {
+
+		mainController.loadDisplayFXML(Display.SALES);
+		handleButtonClick(salesButton, salesIcon);
+		// System.out.println("Sales button clicked!");
+	}
+
+	@FXML
+	private void handlePurchasesButtonAction() {
+
+		mainController.loadDisplayFXML(Display.PURCHASES);
+		handleButtonClick(purchasesButton, purchasesIcon);
+		// System.out.println("Purchases button clicked!");
+	}
+
+	@FXML
+	private void handleCustomersButtonAction() {
+
+		mainController.loadDisplayFXML(Display.CUSTOMERS);
+		handleButtonClick(customersButton, customersIcon);
+		// System.out.println("Customers button clicked!");
+	}
+
 	@FXML
 	private void handleReportsButtonAction() {
 
 		mainController.loadDisplayFXML(Display.REPORTS);
 		handleButtonClick(reportsButton, reportsIcon);
-		System.out.println("Reports button clicked!");
-		// Add your action handling code here
+		// System.out.println("Reports button clicked!");
 	}
 
 	@FXML
@@ -173,7 +187,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.SETTINGS);
 		handleButtonClick(settingsButton, settingsIcon);
-		System.out.println("Settings button clicked!");
-		// Add your action handling code here
+		// System.out.println("Settings button clicked!");
 	}
 }
