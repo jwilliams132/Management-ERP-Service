@@ -170,6 +170,16 @@ public class Stored_Files_Manager {
 		saleHistory.remove(sale);
 	}
 
+	public void addPurchaseToList(Purchase purchase) {
+
+		purchaseHistory.add(purchase);
+	}
+
+	public void removePurchaseFromList(Purchase purchase) {
+
+		purchaseHistory.remove(purchase);
+	}
+
 	public void addCustomerToCustomerList(Customer customer) {
 
 		customerList.add(customer);
