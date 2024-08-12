@@ -82,7 +82,7 @@ public class Controller_NavBar {
 		purchasesIcon.getStyleClass().add("nav-button");
 		purchasesButton.setGraphic(purchasesIcon);
 
-		customersIcon = new FontIcon(MaterialDesignA.ACCOUNT_GROUP_OUTLINE); // Use Material icon
+		customersIcon = new FontIcon(MaterialDesignA.ACCOUNT_GROUP); // Use Material icon
 		customersIcon.getStyleClass().add("nav-button");
 		customersButton.setGraphic(customersIcon);
 
