@@ -42,19 +42,33 @@
                 <TableView fx:id="salesTableView" VBox.vgrow="ALWAYS" maxWidth="805" minWidth="805"
                     prefWidth="805">
                     <columns>
-                        <TableColumn fx:id="transactionIdColumn" text="Transaction ID"
-                            prefWidth="110" resizable="false" />
-                        <TableColumn fx:id="timeColumn" text="Time" prefWidth="120"
+                        <TableColumn fx:id="transactionIdColumn"
+                            text="Transaction ID"
+                            prefWidth="110"
                             resizable="false" />
-                        <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150"
+                        <TableColumn fx:id="timeColumn"
+                            text="Time"
+                            prefWidth="120"
                             resizable="false" />
-                        <TableColumn fx:id="skuNumberColumn" text="SKU Number" prefWidth="105"
+                        <TableColumn fx:id="customerNameColumn"
+                            text="Customer Name"
+                            prefWidth="150"
                             resizable="false" />
-                        <TableColumn fx:id="quantitySoldColumn" text="Quantity Sold" prefWidth="105"
+                        <TableColumn fx:id="skuNumberColumn"
+                            text="SKU Number"
+                            prefWidth="105"
                             resizable="false" />
-                        <TableColumn fx:id="priceCategoryColumn" text="Price Category"
-                            prefWidth="115" resizable="false" />
-                        <TableColumn fx:id="totalPriceColumn" text="Total Price" prefWidth="85"
+                        <TableColumn fx:id="quantitySoldColumn"
+                            text="Quantity Sold"
+                            prefWidth="105"
+                            resizable="false" />
+                        <TableColumn fx:id="priceCategoryColumn"
+                            text="Price Category"
+                            prefWidth="115"
+                            resizable="false" />
+                        <TableColumn fx:id="totalPriceColumn"
+                            text="Total Price"
+                            prefWidth="85"
                             resizable="false" />
                     </columns>
                 </TableView>
@@ -114,7 +128,7 @@
                             <Separator />
 
                             <Label text="Transaction ID:" styleClass="settings-item-title" />
-                            <TextField fx:id="transactionIDTextField_Edit" />
+                            <TextField fx:id="transactionIDTextField" />
 
                             <Label text="Customer:" styleClass="settings-item-title" />
                             <ComboBox fx:id="customerComboBox_Edit" />
