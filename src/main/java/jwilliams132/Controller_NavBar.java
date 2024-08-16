@@ -8,7 +8,6 @@ import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignR;
-import org.kordamp.ikonli.materialdesign2.MaterialDesignT;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignV;
 
 import javafx.fxml.FXML;
