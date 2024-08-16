@@ -1,19 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="customersRoot" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="jwilliams132.Controller_Customers" styleClass="customersRoot">
-	<Label fx:id="main" text="CUSTOMERS" style="-fx-font-weight: bold;" styleClass="tertiaryLabel">
-        <font>
-            <Font name="Courier New" size="50" />
-        </font>
-    </Label>
-    <Label fx:id="secondary" text="Click an Icon on the Right To Get Started" styleClass="secondaryLabel">
-        <font>
-            <Font name="Courier New" size="16" />
-        </font>
-    </Label>
-</VBox>
+<BorderPane fx:id="customersRoot"
+    xmlns="http://javafx.com/javafx/8.0.171"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="jwilliams132.Controller_Customers"
+    styleClass="customersRoot">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="10"
+                    left="10"
+                    right="10"
+                    top="10" />
+            </padding>
+            <Label text="Purchases" styleClass="pageHeader" />
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="10"
+                    left="10"
+                    right="10"
+                    top="10" />
+            </padding>
+            <TableView fx:id="customersTableView"
+                VBox.vgrow="ALWAYS" editable="true">
+                <columns>
+                    <TableColumn fx:id="companyColumn"
+                        text="Company"
+                        prefWidth="230"
+                        resizable="false" />
+                    <TableColumn fx:id="nameColumn"
+                        text="Name"
+                        prefWidth="150"
+                        resizable="false" />
+                    <TableColumn fx:id="phoneColumn"
+                        text="Phone"
+                        prefWidth="116"
+                        resizable="false" />
+                    <TableColumn fx:id="emailColumn"
+                        text="Email"
+                        prefWidth="240"
+                        resizable="false" />
+                    <TableColumn fx:id="addressColumn"
+                        text="Address"
+                        prefWidth="315"
+                        resizable="false" />
+                </columns>
+            </TableView>
+            <HBox fx:id="customerInputBox" spacing="10" HBox.hgrow="ALWAYS"/>
+        </VBox>
+    </center>
+</BorderPane>
