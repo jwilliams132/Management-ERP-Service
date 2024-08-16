@@ -5,20 +5,33 @@ import javafx.beans.property.StringProperty;
 
 public class Customer {
 
-	private final StringProperty name,
+	private final StringProperty company,
+			name,
 			phone,
 			email,
 			address;
 
-	public Customer(String name,
+	public Customer(String company,
+			String name,
 			String phone,
 			String email,
 			String address) {
 
+		this.company = new SimpleStringProperty(company);
 		this.name = new SimpleStringProperty(name);
 		this.phone = new SimpleStringProperty(phone);
 		this.email = new SimpleStringProperty(email);
 		this.address = new SimpleStringProperty(address);
+	}
+
+	public String getCompany() {
+
+		return company.get();
+	}
+
+	public void setCompany(String company) {
+
+		this.company.set(company);
 	}
 
 	// Getter and setter for name
