@@ -28,7 +28,7 @@ public class Controller_Main {
 
 	private Stored_Files_Manager storageManager = new Stored_Files_Manager();
 
-	private Display currentDisplay = Display.PURCHASES;
+	private Display currentDisplay = Display.CUSTOMERS;
 
 	@FXML
 	private void initialize() {

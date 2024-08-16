@@ -161,23 +161,7 @@ public class Controller_Customers {
 		initializeAddCustomerButton();
 	}
 
-	// ====================================================================================================
-
-	@FXML
-	public void printColumnSizes() {
-
-		System.out.printf("%n%s%f%n%s%f%n%s%f%n%s%f%n%s%f",
-				"Company:  ",
-				companyColumn.getWidth(),
-				"Name:  ",
-				nameColumn.getWidth(),
-				"Phone:  ",
-				phoneColumn.getWidth(),
-				"Email:  ",
-				emailColumn.getWidth(),
-				"Address:  ",
-				addressColumn.getWidth());
-	}
+	// ====================================================================================================+
 
 	public void setStorageManager(Stored_Files_Manager storageManager) {
 
