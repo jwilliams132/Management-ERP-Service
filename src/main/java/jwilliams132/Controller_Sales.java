@@ -31,11 +31,6 @@ import javafx.util.converter.LocalDateTimeStringConverter;
 
 public class Controller_Sales {
 
-	private enum Validity {
-
-		VALID, INVALID, NOT_FOUND, DEFAULT;
-	}
-
 	private Stored_Files_Manager storageManager;
 
 	@FXML

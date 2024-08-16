@@ -31,11 +31,6 @@ public class Controller_Purchases {
 
 	private Stored_Files_Manager storageManager;
 
-	private enum Validity {
-
-		VALID, INVALID, NOT_FOUND, DEFAULT;
-	}
-
 	@FXML
 	private BorderPane purchasesRoot;
 	@FXML
