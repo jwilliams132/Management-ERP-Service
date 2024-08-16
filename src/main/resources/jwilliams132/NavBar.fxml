@@ -11,6 +11,7 @@
 	<Button fx:id="inventoryButton" styleClass="nav-button" onAction="#handleInventoryButtonAction" />
 	<Button fx:id="salesButton" styleClass="nav-button" onAction="#handleSalesButtonAction" />
 	<Button fx:id="purchasesButton" styleClass="nav-button" onAction="#handlePurchasesButtonAction" />
+	<Button fx:id="accountingButton" styleClass="nav-button" onAction="#handleAccountingButtonAction" />
 	<Button fx:id="customersButton" styleClass="nav-button" onAction="#handleCustomersButtonAction" />
 	<Button fx:id="reportsButton" styleClass="nav-button" onAction="#handleReportsButtonAction" />
 	<Pane VBox.vgrow="always"/>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane fx:id="accountingRoot"
+	xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="jwilliams132.Controller_Accounting"
+	styleClass="accountingRoot">
+	<center>
+		<VBox alignment="CENTER">
+			<Label fx:id="main" text="ACCOUNTING" style="-fx-font-weight: bold;"
+				styleClass="tertiaryLabel">
+				<font>
+					<Font name="Courier New" size="50" />
+				</font>
+			</Label>
+			<Label fx:id="secondary" text="Click an Icon on the Right To Get Started"
+				styleClass="secondaryLabel">
+				<font>
+					<Font name="Courier New" size="16" />
+				</font>
+			</Label>
+		</VBox>
+	</center>
+</BorderPane>

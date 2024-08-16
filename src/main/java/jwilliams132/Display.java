@@ -2,6 +2,7 @@ package jwilliams132;
 
 public enum Display {
 	
+	ACCOUNTING,
 	CUSTOMERS,
 	DASHBOARD,
 	INVENTORY,

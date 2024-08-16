@@ -18,6 +18,7 @@ public class Controller_Main {
 	@FXML
 	private BorderPane mainPane;
 
+	private Controller_Accounting accountingController;
 	private Controller_Customers customersController;
 	private Controller_Dashboard dashboardController;
 	private Controller_Inventory inventoryController;
@@ -102,6 +103,12 @@ public class Controller_Main {
 
 		switch (currentDisplay) {
 
+			case ACCOUNTING:
+				accountingController = loader.getController();
+				accountingController.setStorageManager(storageManager);
+				accountingController.setup();
+				break;
+
 			case CUSTOMERS:
 				customersController = loader.getController();
 				customersController.setStorageManager(storageManager);
@@ -158,6 +165,9 @@ public class Controller_Main {
 	private String getFXMLFileName(Display display) {
 
 		switch (currentDisplay) {
+
+			case ACCOUNTING:
+				return "Accounting.fxml";
 
 			case CUSTOMERS:
 				return "Customers.fxml";

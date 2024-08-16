@@ -22,7 +22,8 @@ public class Controller_NavBar {
 			inventoryButton,
 			reportsButton,
 			settingsButton,
-			customersButton;
+			customersButton,
+			accountingButton;
 
 	List<Button> navButtons = new ArrayList<Button>();
 	List<FontIcon> navIcons = new ArrayList<FontIcon>();
@@ -32,7 +33,8 @@ public class Controller_NavBar {
 			inventoryIcon,
 			reportsIcon,
 			settingsIcon,
-			customersIcon;
+			customersIcon,
+			accountingIcon;
 
 	private Button activeButton;
 	private FontIcon activeFontIcon;
@@ -55,11 +57,13 @@ public class Controller_NavBar {
 		navButtons.add(customersButton);
 		navButtons.add(reportsButton);
 		navButtons.add(settingsButton);
+		navButtons.add(accountingButton);
 
 		navIcons.add(dashboardIcon);
 		navIcons.add(inventoryIcon);
 		navIcons.add(salesIcon);
 		navIcons.add(purchasesIcon);
+		navIcons.add(accountingIcon);
 		navIcons.add(customersIcon);
 		navIcons.add(reportsIcon);
 		navIcons.add(settingsIcon);
@@ -80,6 +84,10 @@ public class Controller_NavBar {
 		purchasesIcon = new FontIcon(MaterialDesignR.RECEIPT); // Use Material icon
 		purchasesIcon.getStyleClass().add("nav-button");
 		purchasesButton.setGraphic(purchasesIcon);
+
+		accountingIcon = new FontIcon(MaterialDesignC.CASH_USD); // Use Material icon
+		accountingIcon.getStyleClass().add("nav-button");
+		accountingButton.setGraphic(accountingIcon);
 
 		customersIcon = new FontIcon(MaterialDesignA.ACCOUNT_GROUP); // Use Material icon
 		customersIcon.getStyleClass().add("nav-button");
@@ -105,6 +113,7 @@ public class Controller_NavBar {
 			inventoryButton.setText("  Inventory");
 			salesButton.setText("  Sales");
 			purchasesButton.setText("  Purchases");
+			accountingButton.setText("  Accounting");
 			customersButton.setText("  Customers");
 			reportsButton.setText("  Reports");
 			settingsButton.setText("  Settings");
@@ -162,6 +171,14 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.PURCHASES);
 		handleButtonClick(purchasesButton, purchasesIcon);
+		// System.out.println("Purchases button clicked!");
+	}
+
+	@FXML
+	private void handleAccountingButtonAction() {
+
+		mainController.loadDisplayFXML(Display.ACCOUNTING);
+		handleButtonClick(accountingButton, accountingIcon);
 		// System.out.println("Purchases button clicked!");
 	}
 
