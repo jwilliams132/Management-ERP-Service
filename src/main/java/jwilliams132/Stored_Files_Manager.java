@@ -3,12 +3,14 @@ package jwilliams132;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +35,7 @@ public class Stored_Files_Manager {
 
 		loadTireInventoryFromSavedFile();
 		loadSampleCustomerData();
-		loadSampleTransactionData();
+		loadSampleTransactionData2();
 	}
 
 	// ===========================================================================
@@ -258,15 +260,113 @@ public class Stored_Files_Manager {
 	// populate Lists with sample data
 	// ===========================================================================
 
+	private void loadSampleTransactionData2() {
+
+		for (Tire tire : tireInventory)
+			tire.setInventoryCount(0);
+
+		Random random = new Random();
+		Transaction transactionEntry = null;
+
+		for (int transactionNumber = 0, s = 0,
+				p = 0; /* (s < 40 || p < 40) */ transactionNumber < 200; transactionNumber++) {
+
+			Customer customer = customerList.get(random.nextInt(customerList.size()));
+			List<Integer> usedTireIndexes = new ArrayList<Integer>();
+
+			int count = (int) tireInventory.stream()
+					.filter(tire -> tire.getInventoryCount() == 0)
+					.count();
+
+			int saleOrPurchase = random.nextInt(tireInventory.size()) <= count ? 1 : 0;
+			System.out.println(saleOrPurchase + "|" + tireInventory.size() + "|" + count);
+			int tiresPerTransaction = random
+					.nextInt(saleOrPurchase == 0 ? tireInventory.size() - count : tireInventory.size());
+			for (int j = 0; j < tiresPerTransaction; j++) {
+
+				Price_Category category = null;
+
+				int tireIndex = random.nextInt(tireInventory.size());
+
+				while (usedTireIndexes.contains(tireIndex)
+						|| (tireInventory.get(tireIndex).getInventoryCount() == 0 && saleOrPurchase == 0))
+					tireIndex = random.nextInt(tireInventory.size());
+				usedTireIndexes.add(tireIndex);
+				Tire tire = tireInventory.get(tireIndex);
+
+				System.out.println("Tire count:  " + tireInventory.get(tireIndex).getInventoryCount() + 1);
+				int quantity = saleOrPurchase == 0
+						? random.nextInt(tireInventory
+								.get(tireIndex)
+								.getInventoryCount()) + 1
+						: random.nextInt(5) + 1;
+				BigDecimal totalPrice = null;
+
+				switch (random.nextInt(3)) {
+					case 0:
+						category = Price_Category.DEALER;
+						totalPrice = tire.getDealerPrice().multiply(new BigDecimal(quantity));
+						break;
+					case 1:
+						category = Price_Category.DEALER_20_PLUS;
+						totalPrice = tire.getOver20PerOrderDealerPrice().multiply(new BigDecimal(quantity));
+						break;
+					case 2:
+						category = Price_Category.SUGGESTED_RETAIL;
+						totalPrice = tire.getSuggestedRetailPrice().multiply(new BigDecimal(quantity));
+						break;
+				}
+				switch (saleOrPurchase) {
+					case 0:
+						transactionEntry = new Sale(LocalDateTime.now().minusDays(transactionNumber),
+								transactionNumber,
+								tire.getSkuNumber(),
+								quantity,
+								customer,
+								category,
+								totalPrice);
+						s++;
+						break;
+					case 1:
+						transactionEntry = new Purchase(LocalDateTime.now().minusDays(transactionNumber),
+								transactionNumber,
+								tire.getSkuNumber(),
+								quantity,
+								new BigDecimal(random.nextInt(1000)));
+						p++;
+						break;
+				}
+
+				tireInventory.get(tireIndex).setInventoryCount(tireInventory.get(tireIndex).getInventoryCount()
+						+ (saleOrPurchase == 0 ? (-1 * quantity) : quantity));
+				transactionHistory.add(transactionEntry);
+			}
+		}
+
+		System.out.println("TransactionHistory.size() = " + transactionHistory.size());
+		for (Transaction transaction : transactionHistory) {
+
+			if (transaction instanceof Sale) {
+
+				saleHistory.add((Sale) transaction);
+			} else if (transaction instanceof Purchase) {
+
+				purchaseHistory.add((Purchase) transaction);
+			}
+		}
+		System.out.println("saleHistory.size() = " + saleHistory.size());
+		System.out.println("purchaseHistory.size() = " + purchaseHistory.size());
+	}
+
 	private void loadSampleTransactionData() {
 
 		Random random = new Random();
 		Transaction transactionEntry = null;
 
-		for (int i = 0, s = 0, p = 0; (s < 0 || p < 20); i++) {
+		for (int i = 0, s = 0, p = 0; (s < 40 || p < 40); i++) {
 
 			Customer customer = customerList.get(random.nextInt(customerList.size()));
-			int saleOrPurchase = 1;
+			int saleOrPurchase = random.nextInt(2);
 			List<Integer> usedTireIndexes = new ArrayList<Integer>();
 			for (int j = 0; j < 3; j++) {
 
@@ -296,7 +396,7 @@ public class Stored_Files_Manager {
 				}
 				switch (saleOrPurchase) {
 					case 0:
-						transactionEntry = new Sale(LocalDateTime.now().minusDays(random.nextInt(30)),
+						transactionEntry = new Sale(LocalDateTime.now().minusDays(i),
 								i,
 								tire.getSkuNumber(),
 								quantity,
@@ -306,7 +406,7 @@ public class Stored_Files_Manager {
 						s++;
 						break;
 					case 1:
-						transactionEntry = new Purchase(LocalDateTime.now().minusDays(random.nextInt(30)),
+						transactionEntry = new Purchase(LocalDateTime.now().minusDays(i),
 								i,
 								tire.getSkuNumber(),
 								quantity,
@@ -336,7 +436,8 @@ public class Stored_Files_Manager {
 	private void loadSampleCustomerData() {
 
 		Customer[] customers = {
-				new Customer("Williams Road LLC", "Jacob Williams", "210-488-4655", "jwilliams1399@gmail.com", "9730 Horseshoe Pass, San Antonio, Texas, 78254"),
+				new Customer("Williams Road LLC", "Jacob Williams", "210-488-4655", "jwilliams1399@gmail.com",
+						"9730 Horseshoe Pass, San Antonio, Texas, 78254"),
 				new Customer("Doe Co.", "John Doe", "210-687-4325", "jdoe@gmail.com", "111 doe st."),
 				new Customer("Smith Co.", "Jane Smith", "830-465-3218", "jsmith@yahoo.com", "222 smith st."),
 				new Customer("Johnson Co.", "Mike Johnson", "512-462-8473", "mjohnson@hotmail.com", "333 johnson st."),
