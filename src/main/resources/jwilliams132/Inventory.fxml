@@ -20,7 +20,7 @@
 
 <BorderPane fx:id="inventoryRoot" xmlns="http://javafx.com/javafx/8.0.171"
     xmlns:fx="http://javafx.com/fxml/1" fx:controller="jwilliams132.Controller_Inventory"
-    styleClass="inventoryRoot">    
+    styleClass="inventoryRoot">
     <top>
         <VBox spacing="10">
             <padding>
@@ -58,10 +58,14 @@
                 <LineChart fx:id="lineChart" title="Inventory History" VBox.vgrow="ALWAYS"
                     HBox.hgrow="ALWAYS">
                     <xAxis>
-                        <NumberAxis label="Last 3 Months (in Weeks)" tickUnit="1" />
+                        <NumberAxis fx:id="xAxis"
+                            label="Last 2 Months (in Days)"
+                            lowerBound="0"
+                            upperBound="60"
+                            tickUnit="1" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis label="Stock Count" tickUnit="10" />
+                        <NumberAxis fx:id="yAxis" label="Stock Count" />
                     </yAxis>
                 </LineChart>
             </VBox>
