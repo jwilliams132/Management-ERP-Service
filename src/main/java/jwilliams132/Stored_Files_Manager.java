@@ -256,6 +256,37 @@ public class Stored_Files_Manager {
 			return null;
 		}
 	}
+
+	public List<Transaction> getTransactionsHistoryOfTire(Tire tire) {
+
+		List<Transaction> tireTransactions = new ArrayList<>();
+
+		for (Transaction transaction : transactionHistory) {
+
+			if (transaction.getSkuNumber().equals(tire.getSkuNumber()))
+				tireTransactions.add(transaction);
+
+		}
+		return tireTransactions;
+	}
+
+	public List<Transaction> getTransactionsHistoryOfTire(String tireSku) {
+
+		Tire tire = tireInventory.stream()
+				.filter(var -> var.getSkuNumber().equals(tireSku))
+				.findFirst()
+				.orElse(null);
+
+		List<Transaction> tireTransactions = new ArrayList<>();
+
+		for (Transaction transaction : transactionHistory) {
+
+			if (transaction.getSkuNumber().equals(tire.getSkuNumber()))
+				tireTransactions.add(transaction);
+
+		}
+		return tireTransactions;
+	}
 	// ===========================================================================
 	// populate Lists with sample data
 	// ===========================================================================
