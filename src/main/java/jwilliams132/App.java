@@ -31,8 +31,38 @@ public class App extends Application {
 	private Scene scene;
 	private Stage window;
 	private BorderPane root;
+
 	private final String CSS_Styles = this.getClass().getResource("Element_Styles.css").toExternalForm();
-	private final String CSS_Colors_Dark = this.getClass().getResource("Element_Colors_Dark.css").toExternalForm();
+
+	private final String CSS_Colors_Dark = this.getClass()
+			.getResource("Element_Colors_Dark.css")
+			.toExternalForm();
+	private final String CSS_Colors_Light = this.getClass()
+			.getResource("Element_Colors_Light.css")
+			.toExternalForm();
+	// private final String CSS_Colors_Reddish = this.getClass()
+	// .getResource("Element_Colors_Reddish.css")
+	// .toExternalForm();
+	// private final String CSS_Colors_Greenish = this.getClass()
+	// .getResource("Element_Colors_Greenish.css")
+	// .toExternalForm();
+	// private final String CSS_Colors_Blueish = this.getClass()
+	// .getResource("Element_Colors_Bluish.css").toExternalForm();
+
+	// private final String CSS_Font_Size_Small = this.getClass()
+	// .getResource("Element_Font_Size_Small.css")
+	// .toExternalForm();
+	// private final String CSS_Font_Size_Medium = this.getClass()
+	// .getResource("Element_Font_Size_Medium.css")
+	// .toExternalForm();
+	// private final String CSS_Font_Size_Large = this.getClass()
+	// .getResource("Element_Font_Size_Large.css")
+	// .toExternalForm();
+	// private final String CSS_Font_Size_X_Large = this.getClass()
+	// .getResource("Element_Font_Size_X_Large.css")
+	// .toExternalForm();
+
+	private String currentTheme = CSS_Colors_Dark; // Start with the dark theme
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -53,10 +83,9 @@ public class App extends Application {
 		}
 
 		scene = new Scene(root, 1600, 900); // 1300, 600
-		if (!root.getStylesheets().add(CSS_Styles))
-			System.err.println("Element_Styles.css was not added correctly.");
-		if (!root.getStylesheets().add(CSS_Colors_Dark))
-			System.err.println("Element_Colors_Dark.css was not added correctly.");
+		Preferences_Manager preferences_Manager = new Preferences_Manager();
+		applyTheme(preferences_Manager.loadPreferences("src\\main\\resources\\jwilliams132\\config.json",
+				Preferences.class).getTheme());
 
 		window.setScene(scene);
 		// window.setMaximized(true);
@@ -81,12 +110,6 @@ public class App extends Application {
 		}
 	}
 
-	private void reloadStylesheets() {
-		root.getStylesheets().clear();
-		root.getStylesheets().add(CSS_Styles);
-		root.getStylesheets().add(CSS_Colors_Dark);
-	}
-
 	private void startCssFileWatcher() {
 
 		Path pathStyles = Paths.get("src\\main\\resources\\jwilliams132\\Element_Styles.css").toAbsolutePath();
@@ -109,7 +132,7 @@ public class App extends Application {
 								(event.context().toString().equals(pathStyles.getFileName().toString()) ||
 										event.context().toString().equals(pathColors.getFileName().toString()))) {
 
-							Platform.runLater(this::reloadStylesheets);
+							Platform.runLater(this::applyCSS);
 						}
 					}
 					key.reset();
@@ -123,5 +146,44 @@ public class App extends Application {
 		Thread cssWatcherThread = new Thread(cssWatcherTask);
 		cssWatcherThread.setDaemon(true);
 		cssWatcherThread.start();
+	}
+
+	private void applyCSS() {
+
+		root.getStylesheets().clear();
+		root.getStylesheets().add(CSS_Styles);
+		root.getStylesheets().add(currentTheme);
+	}
+
+	public void applyTheme(Themes theme) {
+
+		switch (theme) {
+
+			case DARK:
+				currentTheme = CSS_Colors_Dark;
+				break;
+
+			case LIGHT:
+				System.out.println("current theme:  " + theme);
+				currentTheme = CSS_Colors_Light;
+				break;
+
+			case BLUEISH:
+				// currentTheme = CSS_Colors_Blueish;
+				break;
+
+			case GREENISH:
+				// currentTheme = CSS_Colors_Greenish;
+				break;
+
+			case REDDISH:
+				// currentTheme = CSS_Colors_Reddish;
+				break;
+
+			default:
+				currentTheme = CSS_Colors_Dark;
+				break;
+		}
+		applyCSS(); // Reapply the stylesheets with the new theme
 	}
 }
