@@ -42,6 +42,8 @@ public class Controller_Settings {
 
 	public void setup() {
 
+		storageManager = Stored_Files_Manager.getInstance();
+
 		preferences = preferences_Manager.loadPreferences("src\\main\\resources\\jwilliams132\\config.json",
 		Preferences.class);
 
@@ -144,10 +146,6 @@ public class Controller_Settings {
 	public void setNavBarController(Controller_NavBar navBarController) {
 
 		this.navBarController = navBarController;
-	}
-	public void setStorageManager(Stored_Files_Manager storageManager) {
-
-		this.storageManager = storageManager;
 	}
 
 	public void setApp(App app) {

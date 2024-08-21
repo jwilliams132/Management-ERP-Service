@@ -50,6 +50,8 @@ public class Controller_Inventory {
 
     public void setup() {
 
+        storageManager = Stored_Files_Manager.getInstance();
+
         // Set up TableColumn properties
         itemIdColumn.setCellValueFactory(new PropertyValueFactory<>("skuNumber"));
         modelColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
@@ -590,10 +592,5 @@ public class Controller_Inventory {
                 }
             }
         }
-    }
-
-    public void setStorageManager(Stored_Files_Manager storageManager) {
-
-        this.storageManager = storageManager;
     }
 }

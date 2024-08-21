@@ -30,8 +30,6 @@ public class Controller_Main {
 	private Controller_Sales salesController;
 	private Controller_Settings settingsController;
 
-	private Stored_Files_Manager storageManager = new Stored_Files_Manager();
-
 	private Display currentDisplay = Display.INVENTORY;
 
 	@FXML
@@ -108,43 +106,37 @@ public class Controller_Main {
 
 			case ACCOUNTING:
 				accountingController = loader.getController();
-				accountingController.setStorageManager(storageManager);
 				accountingController.setup();
 				break;
 
 			case CUSTOMERS:
 				customersController = loader.getController();
-				customersController.setStorageManager(storageManager);
 				customersController.setup();
 				break;
 
 			case DASHBOARD:
 				dashboardController = loader.getController();
-				dashboardController.setStorageManager(storageManager);
 				dashboardController.setup();
 				break;
 
 			case INVENTORY:
 				inventoryController = loader.getController();
-				inventoryController.setStorageManager(storageManager);
 				inventoryController.setup();
 				break;
 
 			case PURCHASES:
 				purchasesController = loader.getController();
-				purchasesController.setStorageManager(storageManager);
 				purchasesController.setup();
 				break;
 
 			case REPORTS:
 				reportsController = loader.getController();
-				reportsController.setStorageManager(storageManager);
+
 				reportsController.setup();
 				break;
 
 			case SALES:
 				salesController = loader.getController();
-				salesController.setStorageManager(storageManager);
 				salesController.setup();
 				break;
 
@@ -152,7 +144,6 @@ public class Controller_Main {
 				settingsController = loader.getController();
 				settingsController.setApp(app);
 				settingsController.setNavBarController(navController);
-				settingsController.setStorageManager(storageManager);
 				settingsController.setup();
 				break;
 
@@ -205,11 +196,11 @@ public class Controller_Main {
 
 	public void setApp(App app) {
 
-        this.app = app;
-    }
+		this.app = app;
+	}
 
-    public App getApp() {
+	public App getApp() {
 
-        return app;
-    }
+		return app;
+	}
 }

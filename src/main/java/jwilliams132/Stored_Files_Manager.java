@@ -3,19 +3,19 @@ package jwilliams132;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Stored_Files_Manager {
+
+	private static Stored_Files_Manager instance;
 
 	// get location from preferences.json. add settings option w/ directoryChooser.
 	private final String FILE_PATH_TIRE_INVENTORY = "C:\\Users\\Jacob\\Desktop\\ERP Data\\Tires\\Tires.json";
@@ -31,11 +31,20 @@ public class Stored_Files_Manager {
 	private ObservableList<Sale> saleHistory = FXCollections.observableArrayList();
 	private ObservableList<Purchase> purchaseHistory = FXCollections.observableArrayList();
 
-	public Stored_Files_Manager() {
+	private Stored_Files_Manager() {
 
 		loadTireInventoryFromSavedFile();
 		loadSampleCustomerData();
 		loadSampleTransactionData2();
+	}
+
+	public static Stored_Files_Manager getInstance() {
+
+		if (instance == null) {
+			// Lazy initialization: Create the instance only when needed
+			instance = new Stored_Files_Manager();
+		}
+		return instance;
 	}
 
 	// ===========================================================================

@@ -27,6 +27,7 @@ public class Controller_Customers {
 
 	public void setup() {
 
+		storageManager = Stored_Files_Manager.getInstance();
 		bindColumnsToFields();
 		customersTableView.setItems(storageManager.getCustomerList());
 
@@ -159,12 +160,5 @@ public class Controller_Customers {
 				phoneInput.getText(), emailInput.getText(), addressInput.getText()));
 		customerInputBox.getChildren().clear();
 		initializeAddCustomerButton();
-	}
-
-	// ====================================================================================================+
-
-	public void setStorageManager(Stored_Files_Manager storageManager) {
-
-		this.storageManager = storageManager;
 	}
 }

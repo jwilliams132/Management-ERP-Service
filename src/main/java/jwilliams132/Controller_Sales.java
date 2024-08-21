@@ -69,6 +69,8 @@ public class Controller_Sales {
 
 	public void setup() {
 
+		storageManager = Stored_Files_Manager.getInstance();
+
 		bindColumnsToFields();
 
 		salesTableView.setItems(storageManager.getSaleHistory());
@@ -593,12 +595,5 @@ public class Controller_Sales {
 				groups.remove(group);
 			});
 		}
-	}
-
-	// ====================================================================================================
-
-	public void setStorageManager(Stored_Files_Manager storageManager) {
-
-		this.storageManager = storageManager;
 	}
 }

@@ -61,6 +61,8 @@ public class Controller_Purchases {
 
 	public void setup() {
 
+		storageManager = Stored_Files_Manager.getInstance();
+
 		bindColumnsToFields();
 
 		purchasesTableView.setItems(storageManager.getPurchaseHistory());
@@ -533,12 +535,5 @@ public class Controller_Purchases {
 				groups.remove(group);
 			});
 		}
-	}
-
-	// ====================================================================================================
-
-	public void setStorageManager(Stored_Files_Manager storageManager) {
-
-		this.storageManager = storageManager;
 	}
 }

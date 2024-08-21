@@ -19,10 +19,6 @@ public class Controller_Reports {
 
 	public void setup() {
 
-	}
-
-	public void setStorageManager(Stored_Files_Manager storageManager) {
-
-		this.storageManager = storageManager;
+		storageManager = Stored_Files_Manager.getInstance();
 	}
 }
