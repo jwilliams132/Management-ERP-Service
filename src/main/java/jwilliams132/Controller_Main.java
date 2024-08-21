@@ -32,7 +32,7 @@ public class Controller_Main {
 
 	private Stored_Files_Manager storageManager = new Stored_Files_Manager();
 
-	private Display currentDisplay = Display.CUSTOMERS;
+	private Display currentDisplay = Display.INVENTORY;
 
 	@FXML
 	private void initialize() {
