@@ -1,5 +1,6 @@
 package jwilliams132;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -12,7 +13,11 @@ import javafx.scene.layout.VBox;
 
 public class Controller_Settings {
 
+	private App app;
+	private Controller_NavBar navBarController;
 	private Stored_Files_Manager storageManager;
+	private Preferences_Manager preferences_Manager = new Preferences_Manager();
+	private Preferences preferences;
 
 	@FXML
 	private ScrollPane settingsScrollPane;
@@ -27,13 +32,19 @@ public class Controller_Settings {
 	private TextField searchBar;
 
 	@FXML
-	private CheckBox navBarDescriptionsBox, secondBox, thirdBox, fourthBox;
+	private CheckBox navBarDescriptionsBox;
 
 	@FXML
-	private ComboBox<String> themeComboBox;
+	private ComboBox<Themes> themeComboBox;
+
+	@FXML
+	private ComboBox<FontSizes> fontSizeComboBox;
 
 	public void setup() {
-		
+
+		preferences = preferences_Manager.loadPreferences("src\\main\\resources\\jwilliams132\\config.json",
+		Preferences.class);
+
 		// Initialize the TreeView with categories
 		TreeItem<String> rootItem = new TreeItem<>("Settings");
 		rootItem.setExpanded(true);
@@ -50,7 +61,21 @@ public class Controller_Settings {
 		categoryTreeView.setRoot(rootItem);
 
 		addSearchBarListener(searchBar);
+		setComboBoxValues();
 	}
+
+	// ====================================================================================================
+
+	private void setComboBoxValues() {
+		
+		this.themeComboBox.setItems(FXCollections.observableArrayList(Themes.values()));
+		this.themeComboBox.getSelectionModel().select(preferences.getTheme());
+
+		this.fontSizeComboBox.setItems(FXCollections.observableArrayList(FontSizes.values()));
+		this.fontSizeComboBox.getSelectionModel().select(preferences.getFontSize());
+	}
+
+	// ====================================================================================================
 
 	private void addSearchBarListener(TextField searchBar) {
 
@@ -73,18 +98,25 @@ public class Controller_Settings {
 		// }
 	}
 
+	// ====================================================================================================
+
 	@FXML
 	public void handleComboBoxAction(ActionEvent event) {
 
 		ComboBox<?> source = (ComboBox<?>) event.getSource();
 		if (source == themeComboBox) {
 
-			System.out.println("ComboBox 1 selected: " + themeComboBox.getValue());
-			// Add your specific action for comboBox1
-		} // else if (source == comboBox2) {
+			preferences.setTheme(themeComboBox.getValue());
+			updateConfigFile();
+			app.applyTheme(themeComboBox.getValue());
+		} else if (source == fontSizeComboBox) {
 
-		// }
+			preferences.setFontSize(fontSizeComboBox.getValue());
+			updateConfigFile();
+		}
 	}
+
+	// ====================================================================================================
 
 	@FXML
 	public void handleCheckBoxAction(ActionEvent event) {
@@ -92,25 +124,34 @@ public class Controller_Settings {
 		CheckBox source = (CheckBox) event.getSource();
 		if (source == navBarDescriptionsBox) {
 
-			System.out.println("Checkbox 1 selected: " + navBarDescriptionsBox.isSelected());
-			// Add your specific action for checkBox1
-		} else if (source == secondBox) {
-
-			System.out.println("Checkbox 2 selected: " + secondBox.isSelected());
-			// Add your specific action for checkBox2
-		} else if (source == thirdBox) {
-
-			System.out.println("Checkbox 3 selected: " + thirdBox.isSelected());
-			// Add your specific action for checkBox3
-		} else if (source == fourthBox) {
-
-			System.out.println("Checkbox 4 selected: " + fourthBox.isSelected());
-			// Add your specific action for checkBox4
+			preferences.setNavBarLabelsVisible(navBarDescriptionsBox.isSelected());
+			updateConfigFile();
+			navBarController.handleSettingsChange();
 		}
+		// else if (source == secondBox) {}
 	}
 
+	// ====================================================================================================
+
+	public void updateConfigFile() {
+
+		preferences_Manager.savePreferences("src\\main\\resources\\jwilliams132\\config.json", preferences,
+				Preferences.class);
+	}
+
+	// ====================================================================================================
+
+	public void setNavBarController(Controller_NavBar navBarController) {
+
+		this.navBarController = navBarController;
+	}
 	public void setStorageManager(Stored_Files_Manager storageManager) {
-		
+
 		this.storageManager = storageManager;
 	}
+
+	public void setApp(App app) {
+
+        this.app = app;
+    }
 }

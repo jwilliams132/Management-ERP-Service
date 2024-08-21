@@ -82,6 +82,9 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 
+		Controller_Main mainController = loader.getController();
+		mainController.setApp(this); // Pass this App instance to the controller
+
 		scene = new Scene(root, 1600, 900); // 1300, 600
 		Preferences_Manager preferences_Manager = new Preferences_Manager();
 		applyTheme(preferences_Manager.loadPreferences("src\\main\\resources\\jwilliams132\\config.json",

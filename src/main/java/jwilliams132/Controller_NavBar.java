@@ -38,7 +38,8 @@ public class Controller_NavBar {
 
 	private Button activeButton;
 	private FontIcon activeFontIcon;
-	private boolean isNavTitlesVisible = true;
+	private Preferences_Manager preferences_Manager = new Preferences_Manager();
+	private boolean isNavTitlesVisible;
 
 	private Controller_Main mainController;
 
@@ -105,8 +106,18 @@ public class Controller_NavBar {
 		updateNavBarTitles();
 	}
 
-	private void updateNavBarTitles() {
+	public void handleSettingsChange() {
 
+		isNavTitlesVisible = preferences_Manager
+			.loadPreferences("src\\main\\resources\\jwilliams132\\config.json",
+					Preferences.class)
+			.isNavBarLabelsVisible();
+			updateNavBarTitles();
+	}
+
+	public void updateNavBarTitles() {
+
+		navButtons.forEach(button -> button.setPrefWidth(isNavTitlesVisible ? 230 : 60));
 		if (isNavTitlesVisible) {
 
 			dashboardButton.setText("  Dashboard");
@@ -117,6 +128,11 @@ public class Controller_NavBar {
 			customersButton.setText("  Customers");
 			reportsButton.setText("  Reports");
 			settingsButton.setText("  Settings");
+
+			
+		} else {
+
+			navButtons.forEach(button -> button.setText(""));
 		}
 	}
 

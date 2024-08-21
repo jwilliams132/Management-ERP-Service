@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 
 public class Controller_Main {
 
+	private App app;
+
 	@FXML
 	private VBox navBar;
 	@FXML
@@ -18,6 +20,7 @@ public class Controller_Main {
 	@FXML
 	private BorderPane mainPane;
 
+	private Controller_NavBar navController;
 	private Controller_Accounting accountingController;
 	private Controller_Customers customersController;
 	private Controller_Dashboard dashboardController;
@@ -51,7 +54,7 @@ public class Controller_Main {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("NavBar.fxml"));
 			mainPane.setLeft(loader.load());
-			Controller_NavBar navController = loader.getController();
+			navController = loader.getController();
 			navController.setMainController(this);
 		} catch (IOException e) {
 
@@ -147,6 +150,8 @@ public class Controller_Main {
 
 			case SETTINGS:
 				settingsController = loader.getController();
+				settingsController.setApp(app);
+				settingsController.setNavBarController(navController);
 				settingsController.setStorageManager(storageManager);
 				settingsController.setup();
 				break;
@@ -197,4 +202,14 @@ public class Controller_Main {
 				throw new IllegalArgumentException("Unexpected value: " + currentDisplay);
 		}
 	}
+
+	public void setApp(App app) {
+
+        this.app = app;
+    }
+
+    public App getApp() {
+
+        return app;
+    }
 }

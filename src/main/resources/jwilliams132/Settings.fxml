@@ -118,19 +118,27 @@
 
 					<!-- CheckBox with Wrapped Text -->
 					<Label styleClass="settings-item-description"
-						text="Specifies the color theme used in the program" />
+						text="Specifies the color theme used in the program." />
 
 					<!-- ComboBox with predefined items -->
-					<ComboBox fx:id="comboBox"
+					<ComboBox fx:id="themeComboBox"
 						onAction="#handleComboBoxAction"
-						prefWidth="200">
-						<items>
-							<FXCollections fx:factory="observableArrayList">
-								<String fx:value="Dark Theme" />
-								<String fx:value="Light Theme" />
-							</FXCollections>
-						</items>
-					</ComboBox>
+						prefWidth="200" />
+				</VBox>
+
+				<VBox spacing="5" styleClass="settings-item">
+
+					<!-- Title Label -->
+					<Label styleClass="settings-item-title" text="Font Size" />
+
+					<!-- CheckBox with Wrapped Text -->
+					<Label styleClass="settings-item-description"
+						text="Specifies the font size used in the program." />
+
+					<!-- ComboBox with predefined items -->
+					<ComboBox fx:id="fontSizeComboBox"
+						onAction="#handleComboBoxAction"
+						prefWidth="200" />
 				</VBox>
 			</VBox>
 		</ScrollPane>
