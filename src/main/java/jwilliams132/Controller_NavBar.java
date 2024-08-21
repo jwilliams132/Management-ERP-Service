@@ -69,41 +69,39 @@ public class Controller_NavBar {
 		navIcons.add(reportsIcon);
 		navIcons.add(settingsIcon);
 
-		// Create icons and apply style classes
-		dashboardIcon = new FontIcon(MaterialDesignV.VIEW_DASHBOARD_VARIANT_OUTLINE); // Use Material Design icon
+		dashboardIcon = new FontIcon(MaterialDesignV.VIEW_DASHBOARD_VARIANT_OUTLINE); 
 		dashboardIcon.getStyleClass().add("nav-button");
 		dashboardButton.setGraphic(dashboardIcon);
 
-		inventoryIcon = new FontIcon(MaterialDesignP.PACKAGE_VARIANT_CLOSED); // Use Material icon
+		inventoryIcon = new FontIcon(MaterialDesignP.PACKAGE_VARIANT_CLOSED);
 		inventoryIcon.getStyleClass().add("nav-button");
 		inventoryButton.setGraphic(inventoryIcon);
 
-		salesIcon = new FontIcon(MaterialDesignC.CART); // Use Material icon
+		salesIcon = new FontIcon(MaterialDesignC.CART); 
 		salesIcon.getStyleClass().add("nav-button");
 		salesButton.setGraphic(salesIcon);
 
-		purchasesIcon = new FontIcon(MaterialDesignR.RECEIPT); // Use Material icon
+		purchasesIcon = new FontIcon(MaterialDesignR.RECEIPT); 
 		purchasesIcon.getStyleClass().add("nav-button");
 		purchasesButton.setGraphic(purchasesIcon);
 
-		accountingIcon = new FontIcon(MaterialDesignC.CASH_USD); // Use Material icon
+		accountingIcon = new FontIcon(MaterialDesignC.CASH_USD); 
 		accountingIcon.getStyleClass().add("nav-button");
 		accountingButton.setGraphic(accountingIcon);
 
-		customersIcon = new FontIcon(MaterialDesignA.ACCOUNT_GROUP); // Use Material icon
+		customersIcon = new FontIcon(MaterialDesignA.ACCOUNT_GROUP); 
 		customersIcon.getStyleClass().add("nav-button");
 		customersButton.setGraphic(customersIcon);
 
-		reportsIcon = new FontIcon(MaterialDesignC.CHART_BAR_STACKED); // Use Material icon
+		reportsIcon = new FontIcon(MaterialDesignC.CHART_BAR_STACKED); 
 		reportsIcon.getStyleClass().add("nav-button");
 		reportsButton.setGraphic(reportsIcon);
 
-		settingsIcon = new FontIcon(MaterialDesignC.COG); // Use Material icon
+		settingsIcon = new FontIcon(MaterialDesignC.COG); 
 		settingsIcon.getStyleClass().add("nav-button");
 		settingsButton.setGraphic(settingsIcon);
 
-		navButtons.forEach(button -> button.setPrefWidth(isNavTitlesVisible ? 230 : 75));
-		updateNavBarTitles();
+		handleSettingsChange();
 	}
 
 	public void handleSettingsChange() {
@@ -163,7 +161,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.DASHBOARD);
 		handleButtonClick(dashboardButton, dashboardIcon);
-		// System.out.println("Dashboard button clicked!");
 	}
 
 	@FXML
@@ -171,7 +168,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.INVENTORY);
 		handleButtonClick(inventoryButton, inventoryIcon);
-		// System.out.println("Inventory button clicked!");
 	}
 
 	@FXML
@@ -179,7 +175,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.SALES);
 		handleButtonClick(salesButton, salesIcon);
-		// System.out.println("Sales button clicked!");
 	}
 
 	@FXML
@@ -187,7 +182,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.PURCHASES);
 		handleButtonClick(purchasesButton, purchasesIcon);
-		// System.out.println("Purchases button clicked!");
 	}
 
 	@FXML
@@ -195,7 +189,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.ACCOUNTING);
 		handleButtonClick(accountingButton, accountingIcon);
-		// System.out.println("Purchases button clicked!");
 	}
 
 	@FXML
@@ -203,7 +196,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.CUSTOMERS);
 		handleButtonClick(customersButton, customersIcon);
-		// System.out.println("Customers button clicked!");
 	}
 
 	@FXML
@@ -211,7 +203,6 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.REPORTS);
 		handleButtonClick(reportsButton, reportsIcon);
-		// System.out.println("Reports button clicked!");
 	}
 
 	@FXML
@@ -219,6 +210,5 @@ public class Controller_NavBar {
 
 		mainController.loadDisplayFXML(Display.SETTINGS);
 		handleButtonClick(settingsButton, settingsIcon);
-		// System.out.println("Settings button clicked!");
 	}
 }

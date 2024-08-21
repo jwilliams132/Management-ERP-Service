@@ -64,50 +64,50 @@
 						wrapText="true" />
 				</VBox>
 
-				<VBox spacing="5" styleClass="settings-item">
+				<!-- <VBox spacing="5" styleClass="settings-item">
 
-					<!-- Title Label -->
 					<Label styleClass="settings-item-title" text="Lorem ipsum dolor" />
 
-					<!-- CheckBox with Wrapped Text -->
 					<CheckBox fx:id="secondBox"
 						onAction="#handleCheckBoxAction"
 						alignment="TOP_LEFT"
 						maxWidth="Infinity"
 						styleClass="settings-item-checkbox"
-						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+				labore et dolore magna aliqua."
 						wrapText="true" />
-				</VBox>
+				</VBox> -->
 
-				<VBox spacing="5" styleClass="settings-item">
+				<!-- <VBox spacing="5" styleClass="settings-item">
 
-					<!-- Title Label -->
 					<Label styleClass="settings-item-title" text="Sed ut perspiciatis" />
 
-					<!-- CheckBox with Wrapped Text -->
 					<CheckBox fx:id="thirdBox"
 						onAction="#handleCheckBoxAction"
 						alignment="TOP_LEFT"
 						maxWidth="Infinity"
 						styleClass="settings-item-checkbox"
-						text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+						text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+				laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+				architecto beatae vitae dicta sunt explicabo."
 						wrapText="true" />
-				</VBox>
+				</VBox> -->
 
-				<VBox spacing="5" styleClass="settings-item">
+				<!-- <VBox spacing="5" styleClass="settings-item">
 
-					<!-- Title Label -->
 					<Label styleClass="settings-item-title" text="At vero eos" />
 
-					<!-- CheckBox with Wrapped Text -->
 					<CheckBox fx:id="fourthBox"
 						onAction="#handleCheckBoxAction"
 						alignment="TOP_LEFT"
 						maxWidth="Infinity"
 						styleClass="settings-item-checkbox"
-						text="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
+						text="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+				voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+				occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+				mollitia animi, id est laborum et dolorum fuga."
 						wrapText="true" />
-				</VBox>
+				</VBox> -->
 
 				<Label styleClass="settings-section-title" text="Appearance" />
 
