@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,9 @@ public class Stored_Files_Manager {
 		loadTireInventoryFromSavedFile();
 		loadSampleCustomerData();
 		loadSampleTransactionData2();
+		sortSaleListByID();
+		sortPurchaseListByID();
+		sortTransactionListByID();
 	}
 
 	public static Stored_Files_Manager getInstance() {
@@ -184,17 +188,17 @@ public class Stored_Files_Manager {
 
 	public void sortSaleListByID() {
 
-		saleHistory.sort(Comparator.comparing(Sale::getTransactionID));
+		saleHistory.sort(Comparator.comparing(Sale::getTransactionID).reversed());
 	}
 
 	public void sortPurchaseListByID() {
 
-		purchaseHistory.sort(Comparator.comparing(Purchase::getTransactionID));
+		purchaseHistory.sort(Comparator.comparing(Purchase::getTransactionID).reversed());
 	}
 
 	public void sortTransactionListByID() {
 
-		transactionHistory.sort(Comparator.comparing(Transaction::getTransactionID));
+		transactionHistory.sort(Comparator.comparing(Transaction::getTransactionID).reversed());
 	}
 
 	// ===========================================================================
