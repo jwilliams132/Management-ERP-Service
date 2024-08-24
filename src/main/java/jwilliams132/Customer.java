@@ -5,11 +5,15 @@ import javafx.beans.property.StringProperty;
 
 public class Customer {
 
-	private final StringProperty company,
-			name,
-			phone,
-			email,
-			address;
+	private StringProperty company = new SimpleStringProperty();
+	private StringProperty name = new SimpleStringProperty();
+	private StringProperty phone = new SimpleStringProperty();
+	private StringProperty email = new SimpleStringProperty();
+	private StringProperty address = new SimpleStringProperty();
+
+	public Customer() {
+
+	}
 
 	public Customer(String company,
 			String name,
