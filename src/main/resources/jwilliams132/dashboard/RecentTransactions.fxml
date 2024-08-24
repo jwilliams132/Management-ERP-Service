@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="jwilliams132.dashboard.Controller_RecentTransactions"
+	styleClass="card">
+
+	<Label text="Recent Transactions" styleClass="dashboard-title" />
+	<ScrollPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+		<content>
+			<VBox fx:id="transactionListView" spacing="10" alignment="CENTER">
+
+			</VBox>
+		</content>
+
+	</ScrollPane>
+</VBox>
