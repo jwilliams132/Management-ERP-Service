@@ -317,7 +317,10 @@ public class Stored_Files_Manager {
 
 			int saleOrPurchase = random.nextInt(tireInventory.size()) <= count ? 1 : 0;
 			int tiresPerTransaction = random
-					.nextInt(saleOrPurchase == 0 ? tireInventory.size() - count : tireInventory.size());
+					.nextInt(saleOrPurchase == 0 ? (tireInventory.size() - count) / 2 : tireInventory.size() / 2);
+			// tiresPerTransaction = tiresPerTransaction < tirePerTransactionLimit
+			// ? tiresPerTransaction
+			// : random.nextInt(tirePerTransactionLimit);
 			for (int j = 0; j < tiresPerTransaction; j++) {
 
 				Price_Category category = null;
@@ -353,7 +356,7 @@ public class Stored_Files_Manager {
 				}
 				switch (saleOrPurchase) {
 					case 0:
-						transactionEntry = new Sale(LocalDateTime.now().minusDays(transactionNumber),
+						transactionEntry = new Sale(LocalDateTime.now().minusDays(200 - transactionNumber),
 								transactionNumber,
 								tire.getSkuNumber(),
 								quantity,
@@ -363,7 +366,7 @@ public class Stored_Files_Manager {
 						s++;
 						break;
 					case 1:
-						transactionEntry = new Purchase(LocalDateTime.now().minusDays(transactionNumber),
+						transactionEntry = new Purchase(LocalDateTime.now().minusDays(200 - transactionNumber),
 								transactionNumber,
 								tire.getSkuNumber(),
 								quantity,
