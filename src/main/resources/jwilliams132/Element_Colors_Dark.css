@@ -33,7 +33,7 @@
 .card {
 	-fx-background-color: #0d1521;
 	-fx-border-color: #92315a;
-	-fx-padding: 40;
+	-fx-padding: 10;
 	-fx-border-radius: 10;
 	-fx-background-radius: 10;
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20, 0, 0, 5);
@@ -85,12 +85,49 @@
 	-fx-fill: #c93e71;
 }
 
+.dashboard-card-category-button {
+	-fx-background-radius: 5;
+    -fx-border-radius: 5;
+	-fx-border-color: #1e2d42;
+    -fx-padding: 5;
+	-fx-background-color: transparent;
+}
+
+.dashboard-card-selected-category {
+	-fx-background-color: #c93e7126;
+	-fx-border-color: #c93e71;
+	-fx-text-fill: #c93e71;
+	-fx-background-color: #c93e7126;
+}
+
 /* ========================================================================== */
 /* Labels */
 /* ========================================================================== */
 
 .sales-page-entry-bar-title {
 	-fx-text-fill: #c93e71;
+}
+
+.dashboard-title {
+	-fx-text-fill: #bfccdf;
+	-fx-font-size: 16px;
+}
+
+.dashboard-value {
+	-fx-text-fill: #c93e71;
+	-fx-font-size: 22px;
+}
+
+.dashboard-transactionID {
+	-fx-text-fill: #c93e71;
+}
+
+.dashboard-purchase {
+	-fx-text-fill: #bfccdf;
+}
+
+.dashboard-sale {
+	-fx-text-fill: #bfccdf;
 }
 
 /* ========================================================================== */
@@ -308,6 +345,39 @@
 
 .table-view .column-header .label {
 	-fx-text-fill: #c93e71;
+}
+
+/* ========================================================================== */
+/* List */
+/* ========================================================================== */
+
+.list-view {
+	-fx-background-color: #0d1521;
+	-fx-border-color: #92315a;
+	-fx-border-radius: 3px;
+	-fx-background-radius: 3px;
+}
+
+.list-view .list-cell {
+	-fx-background-color: #101A29;
+	-fx-text-fill: #afccd6;
+}
+
+.list-view .list-cell:selected {
+	-fx-background-color: #c93e7126;
+	-fx-border-color: #1e2d42;
+}
+
+.list-view .list-cell:odd {
+	-fx-background-color: #0d1521;
+}
+
+.list-view .list-cell:even {
+	-fx-background-color: #101A29;
+}
+
+.list-view .list-cell .label {
+	-fx-text-fill: #afccd6;
 }
 
 /* ========================================================================== */
@@ -739,7 +809,7 @@
 }
 
 .greyed-out {
-    -fx-stroke: transparent;
-    -fx-background-color: transparent, transparent;
+	-fx-stroke: transparent;
+	-fx-background-color: transparent, transparent;
 	-fx-stroke-width: 0;
 }
