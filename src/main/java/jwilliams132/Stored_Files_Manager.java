@@ -296,6 +296,26 @@ public class Stored_Files_Manager {
 		}
 		return tireTransactions;
 	}
+
+	public List<Transaction> getRecentTransactions(int count) {
+
+		return transactionHistory.stream()
+				.map(Transaction::getTransactionID)
+				.distinct()
+				.sorted(Comparator.reverseOrder())
+				.limit(count)
+				.sorted()
+				.flatMap(id -> transactionHistory.stream()
+						.filter(t -> t.getTransactionID() == id))
+				.collect(Collectors.toList());
+	}
+
+	public List<Transaction> getTransactionsAfterPointInTime(LocalDateTime time) {
+
+		return transactionHistory.stream()
+				.filter(var -> var.getTime().isAfter(time))
+				.collect(Collectors.toList());
+	}
 	// ===========================================================================
 	// populate Lists with sample data
 	// ===========================================================================
@@ -465,12 +485,9 @@ public class Stored_Files_Manager {
 
 				saleHistory.add((Sale) transaction);
 			} else if (transaction instanceof Purchase) {
+	public ObservableList<Purchase> getPurchaseHistory() {
 
-				purchaseHistory.add((Purchase) transaction);
-			}
-		}
-		System.out.println("saleHistory.size() = " + saleHistory.size());
-		System.out.println("purchaseHistory.size() = " + purchaseHistory.size());
+		return purchaseHistory;
 	}
 
 	public ObservableList<Customer> getCustomerList() {
