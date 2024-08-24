@@ -129,35 +129,6 @@ public class Stored_Files_Manager {
 	}
 
 	// ===========================================================================
-	// getters
-	// ===========================================================================
-
-	public ObservableList<Tire> getTireInventory() {
-
-		return tireInventory;
-	}
-
-	public ObservableList<Transaction> getTransactionHistory() {
-
-		return transactionHistory;
-	}
-
-	public ObservableList<Sale> getSaleHistory() {
-
-		return saleHistory;
-	}
-
-	public ObservableList<Purchase> getPurchaseHistory() {
-
-		return purchaseHistory;
-	}
-
-	public ObservableList<Customer> getCustomerList() {
-
-		return customerList;
-	}
-
-	// ===========================================================================
 	// Edit List entries
 	// ===========================================================================
 
@@ -429,62 +400,25 @@ public class Stored_Files_Manager {
 			int saleOrPurchase = random.nextInt(2);
 			List<Integer> usedTireIndexes = new ArrayList<Integer>();
 			for (int j = 0; j < 3; j++) {
+	// ===========================================================================
+	// getters
+	// ===========================================================================
 
-				Price_Category category = null;
-				int tireIndex = random.nextInt(tireInventory.size());
-				while (usedTireIndexes.contains(tireIndex))
-					tireIndex = random.nextInt(tireInventory.size());
+	public ObservableList<Tire> getTireInventory() {
 
-				Tire tire = tireInventory.get(tireIndex);
+		return tireInventory;
+	}
 
-				int quantity = random.nextInt(10) + 1;
-				BigDecimal totalPrice = null;
+	public ObservableList<Transaction> getTransactionHistory() {
 
-				switch (random.nextInt(3)) {
-					case 0:
-						category = Price_Category.DEALER;
-						totalPrice = tire.getDealerPrice().multiply(new BigDecimal(quantity));
-						break;
-					case 1:
-						category = Price_Category.DEALER_20_PLUS;
-						totalPrice = tire.getOver20PerOrderDealerPrice().multiply(new BigDecimal(quantity));
-						break;
-					case 2:
-						category = Price_Category.SUGGESTED_RETAIL;
-						totalPrice = tire.getSuggestedRetailPrice().multiply(new BigDecimal(quantity));
-						break;
-				}
-				switch (saleOrPurchase) {
-					case 0:
-						transactionEntry = new Sale(LocalDateTime.now().minusDays(i),
-								i,
-								tire.getSkuNumber(),
-								quantity,
-								customer,
-								category,
-								totalPrice);
-						s++;
-						break;
-					case 1:
-						transactionEntry = new Purchase(LocalDateTime.now().minusDays(i),
-								i,
-								tire.getSkuNumber(),
-								quantity,
-								new BigDecimal(random.nextInt(1000)));
-						p++;
-						break;
-				}
-				transactionHistory.add(transactionEntry);
-			}
-		}
+		return transactionHistory;
+	}
 
-		System.out.println("TransactionHistory.size() = " + transactionHistory.size());
-		for (Transaction transaction : transactionHistory) {
+	public ObservableList<Sale> getSaleHistory() {
 
-			if (transaction instanceof Sale) {
+		return saleHistory;
+	}
 
-				saleHistory.add((Sale) transaction);
-			} else if (transaction instanceof Purchase) {
 	public ObservableList<Purchase> getPurchaseHistory() {
 
 		return purchaseHistory;
