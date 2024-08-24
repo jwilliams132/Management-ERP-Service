@@ -480,7 +480,6 @@ public class Controller_Inventory {
 
             if (entry.getKey().isBefore(today.minusDays(xAxisRange))) {
 
-                // System.out.println("bitch");
                 if (seriesStartPoint == null) {
                     seriesStartPoint = entry;
                     continue;
@@ -520,7 +519,6 @@ public class Controller_Inventory {
 
             data.getNode().setOnMouseEntered(event -> {
 
-                System.out.println("Mouse entered: " + data.getXValue()); // Debugging line
                 Tooltip.install(data.getNode(), new Tooltip(String.valueOf(data.getYValue())));
 
                 highlightSeries(lineChart, series);
@@ -533,23 +531,17 @@ public class Controller_Inventory {
         }
 
         // Apply hover effect for legend items
-        System.out.println(lineChart.lookupAll(".chart-legend-item").size());
         for (Node legendItem : lineChart.lookupAll(".chart-legend-item")) {
             Label label = (Label) legendItem;
 
             if (label.getText().equals(series.getName())) {
 
-                System.out.println(label.getText());
                 label.setOnMouseEntered(event -> {
-
-                    System.out.println("Mouse entered on legend: " + series.getName()); // Debugging line
 
                     highlightSeries(lineChart, series);
                 });
 
                 label.setOnMouseExited(event -> {
-
-                    System.out.println("Mouse exited from legend: " + series.getName()); // Debugging line
 
                     removeHighlightFromSeries(lineChart, series);
                 });
