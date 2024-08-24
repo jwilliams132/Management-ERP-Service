@@ -1,6 +1,5 @@
 package jwilliams132.dashboard;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,11 +7,8 @@ import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 import jwilliams132.Purchase;
 import jwilliams132.Sale;
 import jwilliams132.Stored_Files_Manager;
