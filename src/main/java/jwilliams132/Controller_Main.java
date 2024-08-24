@@ -30,7 +30,7 @@ public class Controller_Main {
 	private Controller_Sales salesController;
 	private Controller_Settings settingsController;
 
-	private Display currentDisplay = Display.INVENTORY;
+	private Display currentDisplay = Display.DASHBOARD;
 
 	@FXML
 	private void initialize() {
