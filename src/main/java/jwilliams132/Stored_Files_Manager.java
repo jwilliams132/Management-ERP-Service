@@ -142,6 +142,8 @@ public class Stored_Files_Manager {
 		transactionHistory.remove(transaction);
 	}
 
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 	public void addSaleToList(Sale sale) {
 
 		saleHistory.add(sale);
@@ -152,6 +154,8 @@ public class Stored_Files_Manager {
 		saleHistory.remove(sale);
 	}
 
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 	public void addPurchaseToList(Purchase purchase) {
 
 		purchaseHistory.add(purchase);
@@ -161,6 +165,8 @@ public class Stored_Files_Manager {
 
 		purchaseHistory.remove(purchase);
 	}
+
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	public void addCustomerToCustomerList(Customer customer) {
 
@@ -310,7 +316,6 @@ public class Stored_Files_Manager {
 					.count();
 
 			int saleOrPurchase = random.nextInt(tireInventory.size()) <= count ? 1 : 0;
-			System.out.println(saleOrPurchase + "|" + tireInventory.size() + "|" + count);
 			int tiresPerTransaction = random
 					.nextInt(saleOrPurchase == 0 ? tireInventory.size() - count : tireInventory.size());
 			for (int j = 0; j < tiresPerTransaction; j++) {
@@ -325,7 +330,6 @@ public class Stored_Files_Manager {
 				usedTireIndexes.add(tireIndex);
 				Tire tire = tireInventory.get(tireIndex);
 
-				System.out.println("Tire count:  " + tireInventory.get(tireIndex).getInventoryCount() + 1);
 				int quantity = saleOrPurchase == 0
 						? random.nextInt(tireInventory
 								.get(tireIndex)
@@ -374,7 +378,6 @@ public class Stored_Files_Manager {
 			}
 		}
 
-		System.out.println("TransactionHistory.size() = " + transactionHistory.size());
 		for (Transaction transaction : transactionHistory) {
 
 			if (transaction instanceof Sale) {
@@ -385,21 +388,8 @@ public class Stored_Files_Manager {
 				purchaseHistory.add((Purchase) transaction);
 			}
 		}
-		System.out.println("saleHistory.size() = " + saleHistory.size());
-		System.out.println("purchaseHistory.size() = " + purchaseHistory.size());
 	}
 
-	private void loadSampleTransactionData() {
-
-		Random random = new Random();
-		Transaction transactionEntry = null;
-
-		for (int i = 0, s = 0, p = 0; (s < 40 || p < 40); i++) {
-
-			Customer customer = customerList.get(random.nextInt(customerList.size()));
-			int saleOrPurchase = random.nextInt(2);
-			List<Integer> usedTireIndexes = new ArrayList<Integer>();
-			for (int j = 0; j < 3; j++) {
 	// ===========================================================================
 	// getters
 	// ===========================================================================
