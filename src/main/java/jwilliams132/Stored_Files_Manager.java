@@ -473,18 +473,8 @@ public class Stored_Files_Manager {
 		System.out.println("purchaseHistory.size() = " + purchaseHistory.size());
 	}
 
-	private void loadSampleCustomerData() {
+	public ObservableList<Customer> getCustomerList() {
 
-		Customer[] customers = {
-				new Customer("Williams Road LLC", "Jacob Williams", "210-488-4655", "jwilliams1399@gmail.com",
-						"9730 Horseshoe Pass, San Antonio, Texas, 78254"),
-				new Customer("Doe Co.", "John Doe", "210-687-4325", "jdoe@gmail.com", "111 doe st."),
-				new Customer("Smith Co.", "Jane Smith", "830-465-3218", "jsmith@yahoo.com", "222 smith st."),
-				new Customer("Johnson Co.", "Mike Johnson", "512-462-8473", "mjohnson@hotmail.com", "333 johnson st."),
-				new Customer("Davis Co.", "Emily Davis", "210-785-2632", "edavis@gmail.com", "444 davis st."),
-				new Customer("Brown Co.", "Robert Brown", "830-432-7821", "rbrown@gmail.com", "555 brown st."),
-				new Customer("White Co.", "Linda White", "210-783-3355", "lwhite@gmail.com", "666 white st.") };
-
-		customerList.setAll(customers);
+		return customerList;
 	}
 }
