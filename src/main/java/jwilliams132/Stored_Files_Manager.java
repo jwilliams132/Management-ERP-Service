@@ -35,7 +35,7 @@ public class Stored_Files_Manager {
 	private Stored_Files_Manager() {
 
 		loadTireInventoryFromSavedFile();
-		loadSampleCustomerData();
+		loadCustomerListFromSavedFile();
 		loadSampleTransactionData2();
 		sortSaleListByID();
 		sortPurchaseListByID();
@@ -175,11 +175,13 @@ public class Stored_Files_Manager {
 	public void addCustomerToCustomerList(Customer customer) {
 
 		customerList.add(customer);
+		saveCustomerListToFile();
 	}
 
 	public void removeCustomerToCustomerList(Customer customer) {
 
 		customerList.remove(customer);
+		saveCustomerListToFile();
 	}
 
 	// ===========================================================================
