@@ -104,8 +104,8 @@ public class Controller_Purchases {
 					quantity,
 					totalPrice);
 
-			storageManager.getTransactionHistory().add(purchaseToAdd);
-			storageManager.getPurchaseHistory().add((Purchase) purchaseToAdd);
+			storageManager.addTransactionToList(purchaseToAdd);
+			storageManager.addPurchaseToList((Purchase) purchaseToAdd);
 		}
 		tireInputGroups_New.clear();
 		setNewOrderTransactionIDLabel();

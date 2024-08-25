@@ -123,8 +123,8 @@ public class Controller_Sales {
 							.getPriceForCategory(category)
 							.multiply(new BigDecimal(quantity)));
 
-			storageManager.getTransactionHistory().add(saleToAdd);
-			storageManager.getSaleHistory().add((Sale) saleToAdd);
+			storageManager.addTransactionToList(saleToAdd);
+			storageManager.addSaleToList((Sale) saleToAdd);
 
 		}
 		tireInputGroups_New.clear();
@@ -308,7 +308,7 @@ public class Controller_Sales {
 	}
 
 	// ====================================================================================================
-	
+
 	private void bindColumnsToFields() {
 
 		timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
