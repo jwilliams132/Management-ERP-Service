@@ -8,6 +8,7 @@ module jwilliams132 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.materialdesign2;
 	requires javafx.base;
+	requires com.fasterxml.jackson.datatype.jsr310;
 
 	exports jwilliams132;
     exports jwilliams132.dashboard; // Export the package containing your controllers
