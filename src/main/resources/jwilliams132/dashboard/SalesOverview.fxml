@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="jwilliams132.dashboard.Controller_SalesOverview"
+	spacing="10"
+	styleClass="card">
+
+	<HBox alignment="CENTER">
+		<Label text="Sales Overview" styleClass="dashboard-title" />
+	</HBox>
+
+	<HBox alignment="CENTER">
+		<Label fx:id="valueLabel" styleClass="dashboard-value" />
+	</HBox>
+	
+	<HBox spacing="5">
+
+		<Button fx:id="overall"
+			text="Overall"
+			onAction="#handleCategoryButtons"
+			styleClass="dashboard-card-category-button" />
+
+		<Button fx:id="pastMonth"
+			text="Past Month"
+			onAction="#handleCategoryButtons"
+			styleClass="dashboard-card-category-button" />
+
+		<Button fx:id="pastSixMonths"
+			text="Past 6 Months"
+			onAction="#handleCategoryButtons"
+			styleClass="dashboard-card-category-button" />
+	</HBox>
+</VBox>

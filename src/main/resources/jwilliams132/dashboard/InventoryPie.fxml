@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="jwilliams132.dashboard.Controller_InventoryPie"
+	styleClass="card">
+
+	<HBox alignment="CENTER">
+		<Label text="Inventory Count" styleClass="dashboard-title" />
+	</HBox>
+
+	<HBox alignment="CENTER">
+		<PieChart fx:id="pieChart"/>
+	</HBox>
+</VBox>
