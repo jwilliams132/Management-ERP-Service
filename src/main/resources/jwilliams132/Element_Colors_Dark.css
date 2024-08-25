@@ -87,9 +87,9 @@
 
 .dashboard-card-category-button {
 	-fx-background-radius: 5;
-    -fx-border-radius: 5;
+	-fx-border-radius: 5;
 	-fx-border-color: #1e2d42;
-    -fx-padding: 5;
+	-fx-padding: 5;
 	-fx-background-color: transparent;
 }
 
@@ -128,6 +128,26 @@
 
 .dashboard-sale {
 	-fx-text-fill: #bfccdf;
+}
+
+/* ========================================================================== */
+/* Icons */
+/* ========================================================================== */
+
+.low {
+
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-fill: #FFA500;
+	-fx-font-size: 20px;
+}
+
+.very-low {
+
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-fill: #FF4500;
+	-fx-font-size: 20px;
 }
 
 /* ========================================================================== */
@@ -456,8 +476,32 @@
 }
 
 /* ========================================================================== */
+/* PieChart */
+/* ========================================================================== */
+
+.pie-chart {
+	-fx-padding: 10px;
+}
+
+.chart-pie {
+	-fx-border-color: derive(-fx-pie-color, -40%);
+	-fx-border-width: 0px;
+}
+
+.chart-pie-label {
+	-fx-font-size: 10px;
+	-fx-fill: white;
+}
+
+.chart-pie data {
+	-fx-stroke-width: 0;
+	-fx-stroke: transparent;
+}
+
+/* ========================================================================== */
 /* ScrollPane */
 /* ========================================================================== */
+
 .scroll-pane {
 	-fx-background-color: transparent;
 	-fx-border-width: 0;
@@ -806,6 +850,110 @@
 
 .default-color7.chart-line-symbol {
 	-fx-background-color: #6a5acd, #6a5acd;
+}
+
+.data0.chart-pie {
+	-fx-pie-color: #c93e71;
+}
+
+.data1.chart-pie {
+	-fx-pie-color: #00b3bd;
+}
+
+.data2.chart-pie {
+	-fx-pie-color: #a9dc76;
+}
+
+.data3.chart-pie {
+	-fx-pie-color: #e15fd8;
+}
+
+.data4.chart-pie {
+	-fx-pie-color: #ff4319;
+}
+
+.data5.chart-pie {
+	-fx-pie-color: #81b88b;
+}
+
+.data6.chart-pie {
+	-fx-pie-color: #355484;
+}
+
+.data7.chart-pie {
+	-fx-pie-color: #6a5acd;
+}
+
+.data8.chart-pie {
+	-fx-pie-color: #ffa07a;
+}
+
+.data9.chart-pie {
+	-fx-pie-color: #20b2aa;
+}
+
+.data10.chart-pie {
+	-fx-pie-color: #ff6347;
+}
+
+.data11.chart-pie {
+	-fx-pie-color: #4682b4;
+}
+
+.data12.chart-pie {
+	-fx-pie-color: #dda0dd;
+}
+
+.data13.chart-pie {
+	-fx-pie-color: #bdb76b;
+}
+
+.data14.chart-pie {
+	-fx-pie-color: #6495ed;
+}
+
+.data15.chart-pie {
+	-fx-pie-color: #d2691e;
+}
+
+.data16.chart-pie {
+	-fx-pie-color: #ff1493;
+}
+
+.data17.chart-pie {
+	-fx-pie-color: #008b8b;
+}
+
+.data18.chart-pie {
+	-fx-pie-color: #ffd700;
+}
+
+.data19.chart-pie {
+	-fx-pie-color: #87ceeb;
+}
+
+.data20.chart-pie {
+	-fx-pie-color: #32cd32;
+}
+
+.data21.chart-pie {
+	-fx-pie-color: #b22222;
+}
+
+.data22.chart-pie {
+	-fx-pie-color: #ee82ee;
+}
+
+.data23.chart-pie {
+	-fx-pie-color: #8a2be2;
+}
+
+.data24.chart-pie {
+	-fx-pie-color: #40e0d0;
+}
+
+.data25.chart-pie {
+	-fx-pie-color: #ff7f50;
 }
 
 .greyed-out {
