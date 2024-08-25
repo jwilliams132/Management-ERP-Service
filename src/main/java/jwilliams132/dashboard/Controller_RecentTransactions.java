@@ -49,10 +49,10 @@ public class Controller_RecentTransactions {
 		}});
 
 		for (Transaction transaction : value) {
-			System.out.println("container size:  " + container.getChildren().size());
+			// System.out.println("container size:  " + container.getChildren().size());
 			if (transaction instanceof Purchase) {
 
-				System.out.println("purchase");
+				// System.out.println("purchase");
 				Purchase purchase = (Purchase) transaction;
 				container.getChildren()
 						.add(new Label(String.format("\t%02d %s %04.00f", purchase.getQuantity(), purchase.getSkuNumber(),
@@ -63,7 +63,7 @@ public class Controller_RecentTransactions {
 						});
 			} else if (transaction instanceof Sale) {
 
-				System.out.println("sale");
+				// System.out.println("sale");
 				Sale sale = (Sale) transaction;
 				container.getChildren().add(new Label(
 						String.format("\t%02d %s %04.00f", sale.getQuantity(), sale.getSkuNumber(), sale.getTotalPrice())) {
@@ -73,7 +73,7 @@ public class Controller_RecentTransactions {
 				});
 			}
 		}
-		System.out.println("Container size:  " + container.getChildren().size());
+		// System.out.println("Container size:  " + container.getChildren().size());
 		return container;
 	}
 	// @FXML
