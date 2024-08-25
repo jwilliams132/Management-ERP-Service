@@ -299,6 +299,20 @@ public class Stored_Files_Manager {
 				.filter(var -> var.getTime().isAfter(time))
 				.collect(Collectors.toList());
 	}
+
+	public List<Sale> getSalesAfterPointInTime(LocalDateTime time) {
+
+		return saleHistory.stream()
+				.filter(var -> var.getTime().isAfter(time))
+				.collect(Collectors.toList());
+	}
+
+	public List<Purchase> getPurchasesAfterPointInTime(LocalDateTime time) {
+
+		return purchaseHistory.stream()
+				.filter(var -> var.getTime().isAfter(time))
+				.collect(Collectors.toList());
+	}
 	// ===========================================================================
 	// populate Lists with sample data
 	// ===========================================================================
