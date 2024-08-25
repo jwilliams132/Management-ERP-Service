@@ -36,7 +36,7 @@ public class Stored_Files_Manager {
 
 		loadTireInventoryFromSavedFile();
 		loadCustomerListFromSavedFile();
-		loadSampleTransactionData2();
+		loadSampleTransactionData();
 		sortSaleListByID();
 		sortPurchaseListByID();
 		sortTransactionListByID();
@@ -317,90 +317,82 @@ public class Stored_Files_Manager {
 	// populate Lists with sample data
 	// ===========================================================================
 
-	private void loadSampleTransactionData2() {
-
-		for (Tire tire : tireInventory)
-			tire.setInventoryCount(0);
+	private void loadSampleTransactionData() {
 
 		Random random = new Random();
-		Transaction transactionEntry = null;
+		// List<Transaction> transactionHistory = new ArrayList<>();
 
-		for (int transactionNumber = 0, s = 0,
-				p = 0; /* (s < 40 || p < 40) */ transactionNumber < 200; transactionNumber++) {
+		// Define control variables
+		int maxTiresPerTransaction = 5;
+		int maxQuantityPerTire = 3;
+		int totalTransactions = 200;
+		double saleWeight = 0.80; // 25% Sales, 75% Purchases
 
-			Customer customer = customerList.get(random.nextInt(customerList.size()));
-			List<Integer> usedTireIndexes = new ArrayList<Integer>();
+		for (int transactionNumber = 0; transactionNumber < totalTransactions; transactionNumber++) {
 
-			int count = (int) tireInventory.stream()
-					.filter(tire -> tire.getInventoryCount() == 0)
-					.count();
+			int transactionID = transactionNumber;
+			boolean isSale = random.nextDouble() < saleWeight;
+			int tiresPerTransaction = random.nextInt(maxTiresPerTransaction) + 1;
+			List<Integer> usedTireIndexes = new ArrayList<>();
 
-			int saleOrPurchase = random.nextInt(tireInventory.size()) <= count ? 1 : 0;
-			int tiresPerTransaction = random
-					.nextInt(saleOrPurchase == 0 ? (tireInventory.size() - count) / 2 : tireInventory.size() / 2);
-			// tiresPerTransaction = tiresPerTransaction < tirePerTransactionLimit
-			// ? tiresPerTransaction
-			// : random.nextInt(tirePerTransactionLimit);
 			for (int j = 0; j < tiresPerTransaction; j++) {
 
-				Price_Category category = null;
+				// Select a random tire, ensuring it's not already used in this transaction
+				int tireIndex;
+				do {
 
-				int tireIndex = random.nextInt(tireInventory.size());
-
-				while (usedTireIndexes.contains(tireIndex)
-						|| (tireInventory.get(tireIndex).getInventoryCount() == 0 && saleOrPurchase == 0))
 					tireIndex = random.nextInt(tireInventory.size());
+				} while (usedTireIndexes.contains(tireIndex));
+
 				usedTireIndexes.add(tireIndex);
 				Tire tire = tireInventory.get(tireIndex);
+				int currentInventory = tire.getInventoryCount();
 
-				int quantity = saleOrPurchase == 0
-						? random.nextInt(tireInventory
-								.get(tireIndex)
-								.getInventoryCount()) + 1
-						: random.nextInt(5) + 1;
-				BigDecimal totalPrice = null;
+				// Determine quantity based on sale or purchase
+				int quantity = isSale ? random.nextInt(Math.min(maxQuantityPerTire, currentInventory) + 1)
+						: random.nextInt(maxQuantityPerTire) + 1;
 
-				switch (random.nextInt(3)) {
-					case 0:
-						category = Price_Category.DEALER;
-						totalPrice = tire.getDealerPrice().multiply(new BigDecimal(quantity));
-						break;
-					case 1:
-						category = Price_Category.DEALER_20_PLUS;
-						totalPrice = tire.getOver20PerOrderDealerPrice().multiply(new BigDecimal(quantity));
-						break;
-					case 2:
-						category = Price_Category.SUGGESTED_RETAIL;
-						totalPrice = tire.getSuggestedRetailPrice().multiply(new BigDecimal(quantity));
-						break;
+				if (isSale && quantity == 0)
+					continue; // Skip if no tires to sell
+
+				BigDecimal price = BigDecimal.ZERO;
+
+				if (isSale) {
+
+					// Randomly select a price category for Sales
+					Price_Category category = Price_Category.values()[random.nextInt(Price_Category.values().length)];
+					switch (category) {
+
+						case DEALER:
+							price = tire.getDealerPrice().multiply(new BigDecimal(quantity));
+							break;
+
+						case DEALER_20_PLUS:
+							price = tire.getOver20PerOrderDealerPrice().multiply(new BigDecimal(quantity));
+							break;
+
+						case SUGGESTED_RETAIL:
+							price = tire.getSuggestedRetailPrice().multiply(new BigDecimal(quantity));
+							break;
+					}
+					transactionHistory
+							.add(new Sale(LocalDateTime.now().minusDays(totalTransactions - transactionNumber),
+									transactionID, tire.getSkuNumber(), quantity,
+									customerList.get(random.nextInt(customerList.size())), category, price));
+					tire.setInventoryCount(currentInventory - quantity);
+				} else {
+
+					price = new BigDecimal(random.nextInt(1000));
+					transactionHistory
+							.add(new Purchase(LocalDateTime.now().minusDays(totalTransactions - transactionNumber),
+									transactionID, tire.getSkuNumber(), quantity, price));
+					tire.setInventoryCount(currentInventory + quantity);
 				}
-				switch (saleOrPurchase) {
-					case 0:
-						transactionEntry = new Sale(LocalDateTime.now().minusDays(200 - transactionNumber),
-								transactionNumber,
-								tire.getSkuNumber(),
-								quantity,
-								customer,
-								category,
-								totalPrice);
-						s++;
-						break;
-					case 1:
-						transactionEntry = new Purchase(LocalDateTime.now().minusDays(200 - transactionNumber),
-								transactionNumber,
-								tire.getSkuNumber(),
-								quantity,
-								new BigDecimal(random.nextInt(1000)));
-						p++;
-						break;
-				}
-
-				tireInventory.get(tireIndex).setInventoryCount(tireInventory.get(tireIndex).getInventoryCount()
-						+ (saleOrPurchase == 0 ? (-1 * quantity) : quantity));
-				transactionHistory.add(transactionEntry);
 			}
 		}
 
+
+		// Separate transactions into respective histories
 		for (Transaction transaction : transactionHistory) {
 
 			if (transaction instanceof Sale) {
