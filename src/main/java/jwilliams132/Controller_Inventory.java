@@ -1,16 +1,20 @@
 package jwilliams132;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -34,7 +38,11 @@ public class Controller_Inventory {
     @FXML
     private LineChart<Number, Number> lineChart;
     @FXML
-    private NumberAxis xAxis, yAxis;
+    private LineChart<String, Number> chart;
+    @FXML
+    private NumberAxis yAxis;
+    @FXML
+    private CategoryAxis xAxis;
 
     @FXML
     private TableColumn<Tire, String> itemIdColumn;
@@ -45,8 +53,9 @@ public class Controller_Inventory {
     @FXML
     private TableColumn<Tire, Integer> tireCountColumn;
 
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
     private ObservableList<Tire> tireList = FXCollections.observableArrayList();
-    private Map<XYChart.Series<Number, Number>, Integer> seriesMap = new HashMap<XYChart.Series<Number, Number>, Integer>();
+    private Map<XYChart.Series<String, Number>, Integer> seriesMap = new HashMap<XYChart.Series<String, Number>, Integer>();
 
     public void setup() {
 
@@ -63,15 +72,11 @@ public class Controller_Inventory {
         tireList = storageManager.getTireInventory();
         tireTableView.setItems(tireList);
 
-        // populateLineChart(); // sample data
-        for (Tire tire : tireList) {
-
-            generateInventoryGraph(tire);
-        }
-        for (XYChart.Series<Number, Number> series : lineChart.getData()) {
-            addHoverEffect(lineChart, series);
-        }
+        setupXAxis();
+        populateLineChart();
     }
+
+    // ====================================================================================================
 
     private <S, T> void setRightAlignment(TableColumn<S, T> column) {
 
@@ -100,6 +105,7 @@ public class Controller_Inventory {
         });
     }
 
+    // ====================================================================================================
 
     public void generateInventoryGraph(Tire tire) {
 
@@ -109,63 +115,72 @@ public class Controller_Inventory {
 
         int runningTotal = 0;
         for (Transaction transaction : storageManager.getTransactionsHistoryOfTire(tire)) {
+    // ====================================================================================================
+
+    private void setupXAxis() {
+
+        LocalDate startDate = LocalDate.now().minusWeeks(timeFrameVisible);
+        LocalDate endDate = LocalDate.now();
+        List<String> allDates = new ArrayList<>();
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+
+            allDates.add(date.format(formatter));
+        }
+        xAxis.getCategories().clear();
+        xAxis.setCategories(javafx.collections.FXCollections.observableArrayList(allDates));
+        xAxis.setTickLabelRotation(-60);
+    }
+
+    private void populateLineChart() {
+
+        seriesMap = new HashMap<>();
+
+        for (Tire tire : storageManager.getTireInventory()) {
+
+            XYChart.Series<String, Number> series = getSeries(tire);
+            series.setName(tire.getSkuNumber());
+            seriesMap.put(series, seriesMap.size());
+
+            chart.getData().add(series);
+            addHoverEffect(chart, series);
+        }
+    }
+
+    private XYChart.Series<String, Number> getSeries(Tire tire) {
+
+        List<Transaction> transactions = storageManager.getTransactionsHistoryOfTire(tire);
+        Map<LocalDate, Integer> inventoryOverTime = getInventoryOverTimeMap(tire, transactions);
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+
+        for (Map.Entry<LocalDate, Integer> entry : inventoryOverTime.entrySet()) {
+
+            series.getData().add(new XYChart.Data<>(entry.getKey().format(formatter), entry.getValue()));
+        }
+        return series;
+    }
+
+    private Map<LocalDate, Integer> getInventoryOverTimeMap(Tire tire, List<Transaction> transactions) {
+
+        Map<LocalDate, Integer> inventoryOverTime = new HashMap<>();
+        int runningTotal = tire.getInventoryCount();
+        for (Transaction transaction : transactions) {
 
             if (transaction instanceof Sale)
-                runningTotal -= transaction.getQuantity();
+                runningTotal += transaction.getQuantity();
 
             if (transaction instanceof Purchase)
-                runningTotal += transaction.getQuantity();
+                runningTotal -= transaction.getQuantity();
 
             inventoryOverTime.put(transaction.getTime().toLocalDate(), runningTotal);
         }
-
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-        ObservableList<XYChart.Data<Number, Number>> graphData = FXCollections.observableArrayList();
-        LocalDate today = LocalDate.now();
-
-        // set all points between now and 60 days ago
-        Map.Entry<LocalDate, Integer> seriesStartPoint = null;
-        for (Map.Entry<LocalDate, Integer> entry : inventoryOverTime.entrySet()) {
-
-            if (entry.getKey().isBefore(today.minusDays(xAxisRange))) {
-
-                if (seriesStartPoint == null) {
-                    seriesStartPoint = entry;
-                    continue;
-                }
-                seriesStartPoint = entry.getKey().isAfter(seriesStartPoint.getKey()) ? entry : seriesStartPoint;
-                continue;
-            }
-
-            graphData.add(
-                    new XYChart.Data<>(
-                            (ChronoUnit.DAYS.between(entry.getKey(), today)),
-                            entry.getValue()));
-        }
-
-        // Check if there is already a point with the xAxisRange value
-        boolean pointExistsAtXAxisRange = graphData.stream()
-                .anyMatch(data -> data.getXValue().intValue() == xAxisRange);
-
-        if (!pointExistsAtXAxisRange)
-            graphData.add(new XYChart.Data<>(xAxisRange, tire.getInventoryCount())); // add the most current point
-
-        graphData.add(new XYChart.Data<>(0, seriesStartPoint == null ? 0 : seriesStartPoint.getValue())); // set most
-                                                                                                          // current
-                                                                                                          // point
-
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-        XYChart.Series<Number, Number> series = new XYChart.Series<>(graphData);
-        seriesMap.put(series, seriesMap.size());
-        series.setName(tire.getSkuNumber());
-        lineChart.getData().add(series);
+        return inventoryOverTime;
     }
 
-    private void addHoverEffect(LineChart<Number, Number> lineChart, XYChart.Series<Number, Number> series) {
+    // ====================================================================================================
 
-        for (XYChart.Data<Number, Number> data : series.getData()) {
+    private void addHoverEffect(LineChart<String, Number> lineChart, XYChart.Series<String, Number> series) {
+
+        for (XYChart.Data<String, Number> data : series.getData()) {
 
             data.getNode().setOnMouseEntered(event -> {
 
@@ -199,11 +214,11 @@ public class Controller_Inventory {
         }
     }
 
-    private void removeHighlightFromSeries(LineChart<Number, Number> lineChart, XYChart.Series<Number, Number> series) {
+    private void removeHighlightFromSeries(LineChart<String, Number> lineChart, XYChart.Series<String, Number> series) {
 
-        for (Map.Entry<XYChart.Series<Number, Number>, Integer> entry : seriesMap.entrySet()) {
+        for (Map.Entry<XYChart.Series<String, Number>, Integer> entry : seriesMap.entrySet()) {
 
-            XYChart.Series<Number, Number> currentSeries = entry.getKey();
+            XYChart.Series<String, Number> currentSeries = entry.getKey();
             if (!currentSeries.equals(series)) {
 
                 Set<Node> nodes = lineChart.lookupAll(".series" + seriesMap.get(currentSeries));
@@ -217,11 +232,11 @@ public class Controller_Inventory {
         }
     }
 
-    private void highlightSeries(LineChart<Number, Number> lineChart, XYChart.Series<Number, Number> series) {
+    private void highlightSeries(LineChart<String, Number> lineChart, XYChart.Series<String, Number> series) {
 
-        for (Map.Entry<XYChart.Series<Number, Number>, Integer> entry : seriesMap.entrySet()) {
+        for (Map.Entry<XYChart.Series<String, Number>, Integer> entry : seriesMap.entrySet()) {
 
-            XYChart.Series<Number, Number> currentSeries = entry.getKey();
+            XYChart.Series<String, Number> currentSeries = entry.getKey();
             if (!currentSeries.equals(series)) {
 
                 Set<Node> nodes = lineChart.lookupAll(".series" + seriesMap.get(currentSeries));
