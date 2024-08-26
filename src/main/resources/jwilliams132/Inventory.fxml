@@ -55,8 +55,10 @@
                         resizable="false" />
                 </columns>
             </TableView>
-            <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-                <LineChart fx:id="lineChart" title="Inventory History" VBox.vgrow="ALWAYS"
+            <VBox spacing="10"
+                alignment="CENTER"
+                VBox.vgrow="ALWAYS"
+                HBox.hgrow="ALWAYS">
                 <LineChart fx:id="chart" title="Inventory History" VBox.vgrow="ALWAYS"
                     HBox.hgrow="ALWAYS">
                     <xAxis>
@@ -66,6 +68,38 @@
                         <NumberAxis fx:id="yAxis" label="Stock Count" />
                     </yAxis>
                 </LineChart>
+                <HBox alignment="CENTER" spacing="5" HBox.hgrow="ALWAYS">
+
+                    <Button fx:id="oneWeek"
+                        text="1 Week"
+                        onAction="#handleCategoryButtons"
+                        styleClass="dashboard-card-category-button" />
+
+                    <Button fx:id="twoWeeks"
+                        text="2 Weeks"
+                        onAction="#handleCategoryButtons"
+                        styleClass="dashboard-card-category-button" />
+
+                    <Button fx:id="threeWeeks"
+                        text="3 Weeks"
+                        onAction="#handleCategoryButtons"
+                        styleClass="dashboard-card-category-button" />
+
+                    <Button fx:id="fourWeeks"
+                        text="4 Weeks"
+                        onAction="#handleCategoryButtons"
+                        styleClass="dashboard-card-category-button" />
+
+                    <Button fx:id="fiveWeeks"
+                        text="5 Weeks"
+                        onAction="#handleCategoryButtons"
+                        styleClass="dashboard-card-category-button" />
+
+                    <Button fx:id="sixWeeks"
+                        text="6 Weeks"
+                        onAction="#handleCategoryButtons"
+                        styleClass="dashboard-card-category-button" />
+                </HBox>
             </VBox>
         </HBox>
     </center>

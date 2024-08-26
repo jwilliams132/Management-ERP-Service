@@ -18,6 +18,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -53,6 +54,12 @@ public class Controller_Inventory {
     @FXML
     private TableColumn<Tire, Integer> tireCountColumn;
 
+    @FXML
+    private Button oneWeek, twoWeeks, threeWeeks, fourWeeks, fiveWeeks, sixWeeks;
+    private List<Button> timeFrameOptions = new ArrayList<Button>();
+
+    private int timeFrameVisible;
+
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
     private ObservableList<Tire> tireList = FXCollections.observableArrayList();
     private Map<XYChart.Series<String, Number>, Integer> seriesMap = new HashMap<XYChart.Series<String, Number>, Integer>();
@@ -72,6 +79,15 @@ public class Controller_Inventory {
         tireList = storageManager.getTireInventory();
         tireTableView.setItems(tireList);
 
+        // timeFrameOptions.addAll(List.of(oneWeek, twoWeeks, threeWeeks, fourWeeks, fiveWeeks, sixWeeks));
+        timeFrameOptions.add(oneWeek);
+        timeFrameOptions.add(twoWeeks);
+        timeFrameOptions.add(threeWeeks);
+        timeFrameOptions.add(fourWeeks);
+        timeFrameOptions.add(fiveWeeks);
+        timeFrameOptions.add(sixWeeks);
+        timeFrameVisible = 6;
+        updateButtonStyles(sixWeeks);
         setupXAxis();
         populateLineChart();
     }
@@ -107,14 +123,12 @@ public class Controller_Inventory {
 
     // ====================================================================================================
 
-    public void generateInventoryGraph(Tire tire) {
+    private void updateButtonStyles(Button targetButton) {
 
-        final int xAxisRange = 14;
+		timeFrameOptions.forEach(button -> button.getStyleClass().remove("dashboard-card-selected-category"));
+		targetButton.getStyleClass().add("dashboard-card-selected-category");
+	}
 
-        Map<LocalDate, Integer> inventoryOverTime = new HashMap<>();
-
-        int runningTotal = 0;
-        for (Transaction transaction : storageManager.getTransactionsHistoryOfTire(tire)) {
     // ====================================================================================================
 
     private void setupXAxis() {
@@ -249,5 +263,28 @@ public class Controller_Inventory {
                 }
             }
         }
+    }
+
+    @FXML
+    public void handleCategoryButtons(ActionEvent event) {
+
+        Button source = (Button) event.getSource();
+        updateButtonStyles(source);
+
+        if (source == oneWeek) {
+            timeFrameVisible = 1;
+        } else if (source == twoWeeks) {
+            timeFrameVisible = 2;
+        } else if (source == threeWeeks) {
+            timeFrameVisible = 3;
+        } else if (source == fourWeeks) {
+            timeFrameVisible = 4;
+        } else if (source == fiveWeeks) {
+            timeFrameVisible = 5;
+        } else if (source == sixWeeks) {
+            timeFrameVisible = 6;
+        }
+
+        setupXAxis();
     }
 }
