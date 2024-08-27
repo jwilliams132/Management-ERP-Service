@@ -79,13 +79,8 @@ public class Controller_Inventory {
         tireList = storageManager.getTireInventory();
         tireTableView.setItems(tireList);
 
-        // timeFrameOptions.addAll(List.of(oneWeek, twoWeeks, threeWeeks, fourWeeks, fiveWeeks, sixWeeks));
-        timeFrameOptions.add(oneWeek);
-        timeFrameOptions.add(twoWeeks);
-        timeFrameOptions.add(threeWeeks);
-        timeFrameOptions.add(fourWeeks);
-        timeFrameOptions.add(fiveWeeks);
-        timeFrameOptions.add(sixWeeks);
+        timeFrameOptions.addAll(List.of(oneWeek, twoWeeks, threeWeeks, fourWeeks,
+        fiveWeeks, sixWeeks));
         timeFrameVisible = 6;
         updateButtonStyles(sixWeeks);
         setupXAxis();
@@ -125,9 +120,9 @@ public class Controller_Inventory {
 
     private void updateButtonStyles(Button targetButton) {
 
-		timeFrameOptions.forEach(button -> button.getStyleClass().remove("dashboard-card-selected-category"));
-		targetButton.getStyleClass().add("dashboard-card-selected-category");
-	}
+        timeFrameOptions.forEach(button -> button.getStyleClass().remove("dashboard-card-selected-category"));
+        targetButton.getStyleClass().add("dashboard-card-selected-category");
+    }
 
     // ====================================================================================================
 
@@ -156,8 +151,9 @@ public class Controller_Inventory {
             seriesMap.put(series, seriesMap.size());
 
             chart.getData().add(series);
-            addHoverEffect(chart, series);
         }
+        for (XYChart.Series<String, Number> series : chart.getData())
+            addHoverEffect(chart, series);
     }
 
     private XYChart.Series<String, Number> getSeries(Tire tire) {
@@ -209,21 +205,20 @@ public class Controller_Inventory {
             });
         }
 
-        // Apply hover effect for legend items
         for (Node legendItem : lineChart.lookupAll(".chart-legend-item")) {
-            Label label = (Label) legendItem;
 
-            if (label.getText().equals(series.getName())) {
+            if (((Label) legendItem).getText().equals(series.getName())) {
 
-                label.setOnMouseEntered(event -> {
+                ((Label) legendItem).setOnMouseEntered(event -> {
 
+                    System.out.println("bitch");
                     highlightSeries(lineChart, series);
                 });
 
-                label.setOnMouseExited(event -> {
-
+                ((Label) legendItem).setOnMouseExited(event -> {
                     removeHighlightFromSeries(lineChart, series);
                 });
+                break;
             }
         }
     }
