@@ -319,14 +319,15 @@ public class Stored_Files_Manager {
 
 	private void loadSampleTransactionData() {
 
+		tireInventory.forEach(var -> var.setInventoryCount(0));
 		Random random = new Random();
 		// List<Transaction> transactionHistory = new ArrayList<>();
 
 		// Define control variables
 		int maxTiresPerTransaction = 5;
 		int maxQuantityPerTire = 3;
-		int totalTransactions = 200;
-		double saleWeight = 0.80; // 25% Sales, 75% Purchases
+		int totalTransactions = 100;
+		double saleWeight = 0.50; // 25% Sales, 75% Purchases
 
 		for (int transactionNumber = 0; transactionNumber < totalTransactions; transactionNumber++) {
 
@@ -382,15 +383,14 @@ public class Stored_Files_Manager {
 					tire.setInventoryCount(currentInventory - quantity);
 				} else {
 
-					price = new BigDecimal(random.nextInt(1000));
+					// price = new BigDecimal(random.nextInt(1000));
 					transactionHistory
 							.add(new Purchase(LocalDateTime.now().minusDays(totalTransactions - transactionNumber),
-									transactionID, tire.getSkuNumber(), quantity, price));
+									transactionID, tire.getSkuNumber(), quantity, tire.getSuggestedRetailPrice().multiply(BigDecimal.valueOf(.8))));
 					tire.setInventoryCount(currentInventory + quantity);
 				}
 			}
 		}
-
 
 		// Separate transactions into respective histories
 		for (Transaction transaction : transactionHistory) {

@@ -19,7 +19,6 @@ public class Controller_InventoryPie {
 	private void initialize() {
 
 		setPieChartData(storageManager.getTireInventory());
-		System.out.println("asdf");
 	}
 
 	private void setPieChartData(List<Tire> tireList) {

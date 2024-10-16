@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import jwilliams132.Purchase;
 import jwilliams132.Sale;
 import jwilliams132.Stored_Files_Manager;
 

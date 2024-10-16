@@ -9,14 +9,16 @@
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="jwilliams132.dashboard.Controller_ProfitOverview"
 	spacing="10"
+	minWidth="245" prefWidth="245" maxWidth="245"
+	minHeight="128" prefHeight="128" maxHeight="128"
 	styleClass="card">
 
 	<HBox alignment="CENTER">
-		<Label text="Profit Overview" styleClass="dashboard-title" />
-	</HBox>
-
-	<HBox alignment="CENTER">
 		<Label fx:id="valueLabel" styleClass="dashboard-value" />
+	</HBox>
+	
+	<HBox alignment="CENTER">
+		<Label text="Profit Overview" styleClass="dashboard-title" />
 	</HBox>
 	
 	<HBox spacing="5">
